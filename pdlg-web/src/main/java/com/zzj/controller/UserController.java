@@ -71,7 +71,7 @@ public class UserController {
     @RequestMapping("/queryAllUser.action")
     @ResponseBody
     public PageVo<User> queryAllUser(User user, @RequestParam(value = "page", defaultValue = "1") int page,
-                                     @RequestParam(value = "rows", defaultValue = "10") int rows){
+                                    @RequestParam(value = "rows", defaultValue = "10") int rows){
         return userService.queryAllUser(user,page,rows);
     }
 }

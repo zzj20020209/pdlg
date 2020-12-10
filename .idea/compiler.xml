@@ -6,9 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="pdlg-dao" />
         <module name="pdlg-service" />
         <module name="pdlg-web" />
+        <module name="pdlg-dao" />
       </profile>
     </annotationProcessing>
   </component>
