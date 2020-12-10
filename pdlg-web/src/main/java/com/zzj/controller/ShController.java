@@ -32,6 +32,7 @@ public class ShController {
     public PageVo<Shvo> gyscxfy(Shvo shvo,
                                 @RequestParam(value = "page",defaultValue = "1") int page,
                                 @RequestParam(value = "rows",defaultValue = "5")int rows){
+        System.out.println(shvo+"1111");
         return shService.shcxs(shvo,page,rows);
     }
 }

@@ -63,18 +63,10 @@
     <!-- ShiroFilterFactoryBean -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"></property>
-        <property name="loginUrl" value="/dl.jsp"></property>
-        <property name="unauthorizedUrl" value="/cw.jsp"></property>
         <!-- md5配置生效-->
 
         <property name="filterChainDefinitions">
             <value>
-                /js/**=anon
-                /css/**=anon
-                /fonts/**=anon
-                /login*=anon
-                <!--/**=authc --> <!--根路径下的资源 都需要认证了才能访问-->
-                /**=user<!--根路径下的资源 都需要认证或者rememberme=true了才能访问-->
             </value>
         </property>
 
