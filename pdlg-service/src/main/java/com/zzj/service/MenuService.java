@@ -6,5 +6,5 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface MenuService {
-    public List<String> anj(int kid);
+    public List<String> anj(int id);
 }
