@@ -6,6 +6,7 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class YgController {
+    @CrossOrigin
     @PostMapping("/login.action")
     //@RequestMapping(value = "/login.action",method = RequestMethod.POST)
     public String login(YgVo ygVo,
@@ -46,7 +48,7 @@ public class YgController {
             return "dl.jsp";
         }
     }
-
+    @CrossOrigin
     @GetMapping("/logout.action")
     public String logout(){
         SecurityUtils.getSubject().logout();
