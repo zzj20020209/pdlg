@@ -40,7 +40,7 @@ public class YgController {
             session.setAttribute("ygVo",ygVo);
 
             //返回结果
-            return "lb.jsp";
+            return "l.jsp";
 
         } catch (Exception e) {
             //返回结果
