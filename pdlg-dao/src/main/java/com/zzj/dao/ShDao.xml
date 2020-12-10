@@ -6,7 +6,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="shcx" parameterType="Shvo" resultType="Shvo">
         select * from shanghu
         <where>
-            <if test="sname!=null"> and sname </if>
+            <if test="sname!=null"> and sname like concat("%"+#{sname}+"%")</if>
         </where>
 	</select>
+    <select id="shcxs" parameterType="Shvo" resultType="int">
+        select count(*) from shanghu
+        <where>
+            <if test="sname!=null"> and sname like concat("%"+#{sname}+"%")</if>
+        </where>
+    </select>
 </mapper>
