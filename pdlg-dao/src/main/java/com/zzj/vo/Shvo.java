@@ -7,16 +7,19 @@ public class Shvo {
     String password;
     String address;
     String stele;
+    int state;
 
-    public Shvo(){}
+    public Shvo() {
+    }
 
-    public Shvo(int sid, String sname, String yhm, String password, String address, String stele) {
+    public Shvo(int sid, String sname, String yhm, String password, String address, String stele, int state) {
         this.sid = sid;
         this.sname = sname;
         this.yhm = yhm;
         this.password = password;
         this.address = address;
         this.stele = stele;
+        this.state = state;
     }
 
     public int getSid() {
@@ -67,6 +70,14 @@ public class Shvo {
         this.stele = stele;
     }
 
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
+    }
+
     @Override
     public String toString() {
         return "Shvo{" +
@@ -76,6 +87,7 @@ public class Shvo {
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
                 ", stele='" + stele + '\'' +
+                ", state=" + state +
                 '}';
     }
 }
