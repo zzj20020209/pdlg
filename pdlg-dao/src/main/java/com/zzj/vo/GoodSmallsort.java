@@ -8,10 +8,10 @@ import java.io.Serializable;
 public class GoodSmallsort implements Serializable {
     private int gssid;
     private String gssname;
+    private String gssicon;
+    private int gssstatus;
 
-    public GoodSmallsort(int gssid, String gssname) {
-        this.gssid = gssid;
-        this.gssname = gssname;
+    public GoodSmallsort() {
     }
 
     @Override
@@ -19,6 +19,8 @@ public class GoodSmallsort implements Serializable {
         return "GoodSmallsort{" +
                 "gssid=" + gssid +
                 ", gssname='" + gssname + '\'' +
+                ", gssicon='" + gssicon + '\'' +
+                ", gssstatus=" + gssstatus +
                 '}';
     }
 
@@ -38,6 +40,26 @@ public class GoodSmallsort implements Serializable {
         this.gssname = gssname;
     }
 
-    public GoodSmallsort() {
+    public String getGssicon() {
+        return gssicon;
+    }
+
+    public void setGssicon(String gssicon) {
+        this.gssicon = gssicon;
+    }
+
+    public int getGssstatus() {
+        return gssstatus;
+    }
+
+    public void setGssstatus(int gssstatus) {
+        this.gssstatus = gssstatus;
+    }
+
+    public GoodSmallsort(int gssid, String gssname, String gssicon, int gssstatus) {
+        this.gssid = gssid;
+        this.gssname = gssname;
+        this.gssicon = gssicon;
+        this.gssstatus = gssstatus;
     }
 }

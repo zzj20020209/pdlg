@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.dao.GoodBigSortDao">
+
+    <select id="queryAllGoodBigSort" parameterType="goodBigSort" resultType="goodBigSort">
+
+        select * from goodBigSort
+        <where>
+            <if test="gbsname!=null">and gbsname like concat('%',#{gbsname},'%') </if>
+        </where>
+
+    </select>
+
+    <select id="querycountGoodBigSort" parameterType="goodBigSort" resultType="int">
+        select count(*) FROM goodBigSort
+        <where>
+            <if test="gbsname!=null">and gbsname like concat('%',#{gbsname},'%') </if>
+        </where>
+    </select>
+
+
+    <insert id="addGoodBigSort" parameterType="goodBigSort">
+		INSERT INTO goodBigSort(gbsname,gbsicon,gbsstatus)
+		values (#{gbsname},#{gbsicon},default )
+	</insert>
+
+    <delete id="deleteGoodBigSort" parameterType="int">
+		update goodBigSort set gbsstatus=1 where gbsid=#{gbsid}
+
+	</delete>
+    <select id="queryGoodBigSortBygbsid" parameterType="int" resultType="goodBigSort">
+        select * from goodBigSort where gbsid=#{gbsid}
+    </select>
+    <update id="updateGoodBigSort" parameterType="goodBigSort">
+
+		update goodBigSort set
+		gbsname=#{gbsname},
+		gbsicon=#{gbsicon},
+          where gbsid=#{gbsid}
+
+	</update>
+    <delete id="deleteGoodBigSortduo" parameterType="int">
+        DELETE FROM goodBigSort
+        <foreach collection="array" item="gbsid" open="where gbsid in(" separator="," close=");">
+            #{gbsid}
+        </foreach>
+    </delete>
+    <select id="queryGoodBigSortBygsid" parameterType="int" resultType="goodBigSort">
+      select bs.* from goodbigsort bs inner join goodsort s on s.`gbsid`=bs.`gbsid`
+      WHERE s.`gsid`= #{gsid}
+    </select>
+
+</mapper>
