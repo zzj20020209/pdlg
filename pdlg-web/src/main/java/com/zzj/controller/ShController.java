@@ -10,7 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class ShController {
@@ -84,9 +87,30 @@ public class ShController {
     public String shzc(Shvo shvo){
         int num=shService.shzc(shvo);
         if(num==1){
-            return "注册成功";
+            return "注册申请成功";
         }
         return "注册失败";
+    }
+
+    @CrossOrigin
+    @RequestMapping("/shdl")
+    @ResponseBody
+    public Map shdl(Shvo shvo, HttpSession session){
+        Map<String,String> map =new HashMap<String,String>();
+        Shvo shvo1= shService.shdl(shvo);
+
+        if(shvo1!=null){
+            session.setAttribute("sh",shvo1);
+            map.put("code","0");
+            map.put("msg","登录成功");
+            map.put("yhm",shvo1.getSname());
+        }else{
+            map.put("code","1");
+            map.put("msg","登录失败");
+            //map.put("username","test");
+        }
+
+        return map;
     }
 
     @CrossOrigin

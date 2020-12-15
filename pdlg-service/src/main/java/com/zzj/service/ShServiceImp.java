@@ -54,6 +54,11 @@ public class ShServiceImp implements ShService{
     }
 
     @Override
+    public Shvo shdl(Shvo shvo) {
+        return shDao.shdl(shvo);
+    }
+
+    @Override
     public int shspcg(int sid) {
         return shDao.shspcg(sid);
     }
