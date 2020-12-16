@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.dao.GoodSmallsortDao">
+
+    <select id="queryAllGoodSmallsort" parameterType="goodSmallsort" resultType="goodSmallsort">
+
+        select * from goodSmallsort
+        <where>
+            <if test="gssname!=null">and gssname like concat('%',#{gssname},'%') </if>
+        </where>
+
+    </select>
+
+    <select id="querycountGoodSmallsort" parameterType="goodSmallsort" resultType="int">
+        select count(*) FROM goodSmallsort
+        <where>
+            <if test="gssname!=null">and gssname like concat('%',#{gssname},'%') </if>
+        </where>
+    </select>
+
+
+    <insert id="addGoodSmallsort" parameterType="goodSmallsort">
+		INSERT INTO goodSmallsort(gssname,gssicon,gssstatus)
+		values (#{gssname},#{gssicon},default )
+	</insert>
+
+    <delete id="deleteGoodSmallsort" parameterType="int">
+		update goodSmallsort set gssstatus=1 where gssid=#{gssid}
+
+	</delete>
+    <select id="queryGoodSmallsortBygssid" parameterType="int" resultType="goodSmallsort">
+        select * from goodSmallsort where gssid=#{gssid}
+    </select>
+    <update id="updateGoodSmallsort" parameterType="goodSmallsort">
+
+		update goodSmallsort set
+		gssname=#{gssname},
+		gssicon=#{gssicon},
+          where  gssid=#{gssid}
+
+	</update>
+    <delete id="deleteGoodSmallsortduo" parameterType="int">
+        DELETE FROM goodSmallsort
+        <foreach collection="array" item="gssid" open="where gssid in(" separator="," close=");">
+            #{gssid}
+        </foreach>
+    </delete>
+    <select id="queryGoodSmallsortBygsid" parameterType="int" resultType="goodSmallsort">
+      SELECT ss.* FROM goodSmallsort ss INNER JOIN goodsort s ON s.`gssid`=ss.gssid
+       WHERE s.`gsid`= #{gsid}
+    </select>
+    <select id="queryGoodSmallsortBygbsid" parameterType="int" resultType="goodSmallsort">
+      SELECT ss.* FROM goodsort s INNER JOIN goodbigsort bs ON s.`gbsid`=bs.`gbsid`
+     INNER JOIN goodSmallsort ss ON s.`gssid`=ss.gssid
+      WHERE bs.`gbsid`= #{gbsid}
+    </select>
+
+</mapper>
