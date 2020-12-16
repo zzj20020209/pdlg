@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.dao.GoodSortDao">
+    <resultMap id="goodSortMap" type="GoodSort">
+        <id column="gsid" property="gsid"/>
+        <association property="goodBigSort" javaType="com.zzj.vo.GoodBigSort"
+                     select="com.zzj.dao.GoodBigSortDao.queryGoodBigSortBygsid" column="gsid"
+                     fetchType="lazy">
+        </association>
+        <association property="goodSmallsort" javaType="com.zzj.vo.GoodSmallsort"
+                     select="com.zzj.dao.GoodSmallsortDao.queryGoodSmallsortBygsid" column="gsid"
+                     fetchType="lazy">
+        </association>
+    </resultMap>
+    <insert id="addGoodSortBybidsid" parameterType="list">
+        INSERT INTO goodsort(gbsid,gssid)
+        values
+        <foreach collection="list" item="goodSortList" index="index" separator="," >
+            (#{goodSortList.goodBigSort.gbsid},#{goodSortList.goodSmallsort.gssid})
+        </foreach>
+    </insert>
+    <delete id="deleteGoodSortBygbsid" parameterType="int">
+		DELETE FROM goodsort WHERE gbsid=#{gbsid};
+	</delete>
+    <select id="queryGoodSortBygid" parameterType="int" resultMap="goodSortMap">
+             SELECT s.* FROM goodsort s INNER JOIN goods g ON s.`gsid`=g.gsid
+              where s.gsid=#{gsid}
+    </select>
+</mapper>
