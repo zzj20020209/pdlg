@@ -15,6 +15,8 @@ public interface ShService {
     public int shxg(Shvo shvo);
     //商户注册
     public int shzc(Shvo shvo);
+    //商户登录
+    public Shvo shdl(Shvo shvo);
     //商户审批
     public int shspcg(int sid);
     public int shspsb(int sid);

@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update shanghu set sname=#{sname},yhm=#{yhm},password=#{password},address=#{address},stele=#{stele} where sid=#{sid}
     </update>
     <insert id="shzc" parameterType="Shvo" >
-        insert into shanghu values(#{sid},#{sname},#{yhm},#{password},#{address},#{stele})
+        insert into shanghu values(null,#{sname},#{yhm},#{password},#{address},#{stele},null)
     </insert>
     <update id="shsp" parameterType="Shvo">
         update shanghu set state=1 where sid=#{sid}
@@ -50,5 +50,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             and state=2
         </where>
 
+    </select>
+    <select id="shdl" parameterType="Shvo" resultType="Shvo">
+        select * from shanghu where yhm=#{yhm} and password=#{password}
     </select>
 </mapper>
