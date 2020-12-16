@@ -11,5 +11,5 @@ public interface GoodSortDao {
     //删除
     public int deleteGoodSortBygbsid(int gbsid);
     //通过商品ID查分类
-    public GoodSort queryGoodSortBygid(int gid);
+    public List<GoodSort> queryGoodSortBygid(int gid);
 }

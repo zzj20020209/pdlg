@@ -26,7 +26,7 @@ public class GoodSortController {
     @RequestMapping("/queryGoodSortBygid.action")
     @CrossOrigin
     @ResponseBody
-    public GoodSort queryGoodSortBygid(int gid)
+    public  List<GoodSort> queryGoodSortBygid(int gid)
     {
         return goodSortService.queryGoodSortBygid(gid);
     }
