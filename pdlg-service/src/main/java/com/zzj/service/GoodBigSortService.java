@@ -4,9 +4,12 @@ import com.zzj.vo.GoodBigSort;
 import com.zzj.vo.GoodSort;
 import com.zzj.vo.PageVo;
 
+import java.util.List;
+
 public interface GoodBigSortService {
     //条件查询所有
     public PageVo<GoodBigSort> queryAllGoodBigSort(GoodBigSort goodBigSort, int page, int rows) ;
+    public List<GoodBigSort> queryAllGoodBigSortall(GoodBigSort goodBigSort);
     //添加分类
     public int addGoodBigSort(GoodBigSort goodBigSort);
     //通过ID查分类

@@ -9,6 +9,8 @@ import com.zzj.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GoodBigSortServiceImpl implements GoodBigSortService {
     @Autowired
@@ -26,6 +28,11 @@ public class GoodBigSortServiceImpl implements GoodBigSortService {
         pageVo.setTotal(goodBigSortDao.querycountGoodBigSort(goodBigSort));
 
         return pageVo;
+    }
+
+    @Override
+    public List<GoodBigSort> queryAllGoodBigSortall(GoodBigSort goodBigSort) {
+        return goodBigSortDao.queryAllGoodBigSort(goodBigSort);
     }
 
     @Override

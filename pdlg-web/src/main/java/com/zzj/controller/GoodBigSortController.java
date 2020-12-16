@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -27,6 +28,15 @@ public class GoodBigSortController {
                                                    @RequestParam(value = "size",defaultValue = "0") Integer size){
         PageVo<GoodBigSort> pageVo = goodBigSortService.queryAllGoodBigSort(goodBigSort,page,size);
         return pageVo;
+    }
+    //所有大分类
+    @RequestMapping("/queryAllGoodBigSortall.action")
+    @CrossOrigin
+    @ResponseBody
+    public List<GoodBigSort> queryAllGoodBigSortall(GoodBigSort goodBigSort)
+    {
+
+        return goodBigSortService.queryAllGoodBigSortall(goodBigSort);
     }
     //添加
     @RequestMapping(value ="/addGoodBigSort.actio-n",produces = {"application/json;charset=utf-8"})
