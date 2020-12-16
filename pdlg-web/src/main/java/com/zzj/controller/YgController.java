@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 public class YgController {
     @CrossOrigin
-    @PostMapping("/login.action")
+    @PostMapping("/login")
     //@RequestMapping(value = "/login.action",method = RequestMethod.POST)
     public String login(YgVo ygVo,
                         @RequestParam(value = "rememberme",defaultValue = "false")boolean rememberme ,
