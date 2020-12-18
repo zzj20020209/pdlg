@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.zzj.dao.GoodsDao">
 	<resultMap id="goodsmapper" type="com.zzj.vo.Goods">
 		<id column="gid" property="gid"></id>
-		<association property="goodSort" javaType="com.zzj.vo.GoodSort"
-					 select="com.zzj.dao.GoodSortDao.queryGoodSortBygid" column="gid"
+		<association property="gsid" javaType="com.zzj.vo.GoodSort"
+					 select="com.zzj.dao.GoodSortDao.queryGoodSortBygid" column="gsid"
 					 fetchType="lazy">
 		</association>
 	</resultMap>

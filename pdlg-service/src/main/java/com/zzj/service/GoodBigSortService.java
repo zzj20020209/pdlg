@@ -1,6 +1,7 @@
 package com.zzj.service;
 
 import com.zzj.vo.GoodBigSort;
+import com.zzj.vo.GoodSort;
 import com.zzj.vo.PageVo;
 
 import java.util.List;

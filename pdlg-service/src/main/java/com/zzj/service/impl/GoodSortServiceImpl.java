@@ -18,51 +18,17 @@ public class GoodSortServiceImpl implements GoodSortService {
 
 
     @Override
-    public PageVo<GoodSort> queryAllGoodSort(GoodSort goodSort, int page, int rows) {
-        PageVo<GoodSort> pageVo = new PageVo<>();
-
-        //在需要分页的代码调用前 执行以下代码
-        PageHelper.startPage(page, rows);
-        //获取分页后 显示的数据集合
-        pageVo.setRows(goodSortDao.queryAllGoodSort(goodSort));
-        //获取总的记录数量
-        pageVo.setTotal(goodSortDao.querycountGoodSort(goodSort));
-
-        return pageVo;
+    public int addGoodSortBybidsid(List<GoodSort> goodSortList) {
+        return goodSortDao.addGoodSortBybidsid(goodSortList);
     }
 
     @Override
-    public int addGoodSort(GoodSort goodSort) {
-        return goodSortDao.addGoodSort(goodSort);
+    public int deleteGoodSortBygbsid(int gbsid) {
+        return goodSortDao.deleteGoodSortBygbsid(gbsid);
     }
 
     @Override
-    public GoodSort queryGoodSortBygsid(int gsid) {
-        return goodSortDao.queryGoodSortBygsid(gsid);
-    }
-
-    @Override
-    public int updateGoodSort(GoodSort goodSort) {
-        return goodSortDao.updateGoodSort(goodSort);
-    }
-
-    @Override
-    public int deleteGoodSort(int gsid) {
-        return goodSortDao.deleteGoodSort(gsid);
-    }
-
-    @Override
-    public int deleteGoodsSortduo(int[] ids) {
-        return goodSortDao.deleteGoodsSortduo(ids);
-    }
-
-    @Override
-    public GoodSort queryGoodSortBygid(int gid) {
+    public List<GoodSort> queryGoodSortBygid(int gid) {
         return goodSortDao.queryGoodSortBygid(gid);
-    }
-
-    @Override
-    public List<GoodSort> queryAllGoodSortname(GoodSort goodSort) {
-        return goodSortDao.queryAllGoodSort( goodSort);
     }
 }

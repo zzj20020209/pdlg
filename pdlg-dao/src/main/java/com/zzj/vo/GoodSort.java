@@ -7,24 +7,19 @@ import java.io.Serializable;
 @JsonIgnoreProperties("handler")
 public class GoodSort implements Serializable {
     private int gsid;
-    private String gsname;
-    private  int gsstatus;
+    private GoodBigSort goodBigSort;
+    private GoodSmallsort goodSmallsort;
+
 
     public GoodSort() {
-    }
-
-    public GoodSort(int gsid, String gsname, int gsstatus) {
-        this.gsid = gsid;
-        this.gsname = gsname;
-        this.gsstatus = gsstatus;
     }
 
     @Override
     public String toString() {
         return "GoodSort{" +
                 "gsid=" + gsid +
-                ", gsname='" + gsname + '\'' +
-                ", gsstatus=" + gsstatus +
+                ", goodBigSort=" + goodBigSort +
+                ", goodSmallsort=" + goodSmallsort +
                 '}';
     }
 
@@ -36,19 +31,25 @@ public class GoodSort implements Serializable {
         this.gsid = gsid;
     }
 
-    public String getGsname() {
-        return gsname;
+    public GoodBigSort getGoodBigSort() {
+        return goodBigSort;
     }
 
-    public void setGsname(String gsname) {
-        this.gsname = gsname;
+    public void setGoodBigSort(GoodBigSort goodBigSort) {
+        this.goodBigSort = goodBigSort;
     }
 
-    public int getGsstatus() {
-        return gsstatus;
+    public GoodSmallsort getGoodSmallsort() {
+        return goodSmallsort;
     }
 
-    public void setGsstatus(int gsstatus) {
-        this.gsstatus = gsstatus;
+    public void setGoodSmallsort(GoodSmallsort goodSmallsort) {
+        this.goodSmallsort = goodSmallsort;
+    }
+
+    public GoodSort(int gsid, GoodBigSort goodBigSort, GoodSmallsort goodSmallsort) {
+        this.gsid = gsid;
+        this.goodBigSort = goodBigSort;
+        this.goodSmallsort = goodSmallsort;
     }
 }

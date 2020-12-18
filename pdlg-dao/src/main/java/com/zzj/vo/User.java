@@ -2,12 +2,14 @@ package com.zzj.vo;
 
 public class User {
     private Integer uid;
+    private String image;
     private String username;
     private String password;
-    private String uname;
+    private String name;
     private String sex;
     private String phone;
     private String address;
+    private Float price;
 
     public Integer getUid() {
         return uid;
@@ -15,6 +17,14 @@ public class User {
 
     public void setUid(Integer uid) {
         this.uid = uid;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getUsername() {
@@ -33,12 +43,12 @@ public class User {
         this.password = password;
     }
 
-    public String getUname() {
-        return uname;
+    public String getName() {
+        return name;
     }
 
-    public void setUname(String uname) {
-        this.uname = uname;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getSex() {
@@ -63,5 +73,13 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Float getPrice() {
+        return price;
+    }
+
+    public void setPrice(Float price) {
+        this.price = price;
     }
 }

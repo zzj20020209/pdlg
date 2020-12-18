@@ -2,6 +2,7 @@ package com.zzj.controller;
 
 import com.zzj.service.GoodBigSortService;
 import com.zzj.vo.GoodBigSort;
+import com.zzj.vo.Goods;
 import com.zzj.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

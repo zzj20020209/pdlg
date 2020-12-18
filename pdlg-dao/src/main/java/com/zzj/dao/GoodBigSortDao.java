@@ -1,6 +1,7 @@
 package com.zzj.dao;
 
 import com.zzj.vo.GoodBigSort;
+import com.zzj.vo.GoodSort;
 
 import java.util.List;
 

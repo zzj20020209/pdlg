@@ -1,6 +1,7 @@
 package com.zzj.controller;
 
 import com.zzj.service.GoodSmallsortService;
+import com.zzj.vo.GoodBigSort;
 import com.zzj.vo.GoodSmallsort;
 import com.zzj.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;

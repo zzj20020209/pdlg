@@ -2,6 +2,8 @@ package com.zzj.controller;
 
 import com.zzj.utils.FileUpLoadUtil;
 import com.zzj.vo.system.Message;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

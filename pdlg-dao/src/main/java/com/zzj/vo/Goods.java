@@ -11,7 +11,7 @@ public class Goods implements Serializable {
     private String gunit;
     private double gprice;
     private String gimage;
-    private GoodSort goodSort;
+    private GoodSort gsid;
     private  int gstatus;
     //aa
 
@@ -26,7 +26,7 @@ public class Goods implements Serializable {
                 ", gunit='" + gunit + '\'' +
                 ", gprice=" + gprice +
                 ", gimage='" + gimage + '\'' +
-                ", goodSort=" + goodSort +
+                ", gsid=" + gsid +
                 ", gstatus=" + gstatus +
                 '}';
     }
@@ -71,12 +71,12 @@ public class Goods implements Serializable {
         this.gimage = gimage;
     }
 
-    public GoodSort getGoodSort() {
-        return goodSort;
+    public GoodSort getGsid() {
+        return gsid;
     }
 
-    public void setGoodSort(GoodSort goodSort) {
-        this.goodSort = goodSort;
+    public void setGsid(GoodSort gsid) {
+        this.gsid = gsid;
     }
 
     public int getGstatus() {
@@ -87,13 +87,13 @@ public class Goods implements Serializable {
         this.gstatus = gstatus;
     }
 
-    public Goods(int gid, String gname, String gunit, double gprice, String gimage, GoodSort goodSort, int gstatus) {
+    public Goods(int gid, String gname, String gunit, double gprice, String gimage, GoodSort gsid, int gstatus) {
         this.gid = gid;
         this.gname = gname;
         this.gunit = gunit;
         this.gprice = gprice;
         this.gimage = gimage;
-        this.goodSort = goodSort;
+        this.gsid = gsid;
         this.gstatus = gstatus;
     }
 }
