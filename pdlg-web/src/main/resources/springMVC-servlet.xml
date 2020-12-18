@@ -80,7 +80,6 @@
 	<!--开启aop，对类代理
  不加这个配置，后续配置无效
  -->
-	<aop:config proxy-target-class="true"></aop:config>
 
 
 </beans>

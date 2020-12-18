@@ -23,7 +23,6 @@ public class ShServiceImp implements ShService{
     @Override
     public PageVo<Shvo> shcxs(Shvo shvo, int page, int rows) {
         PageVo<Shvo> pageVo = new PageVo<>();
-
         //在需要分页的代码调用前 执行以下代码
         PageHelper.startPage(page, rows);
         //获取分页后 显示的数据集合
