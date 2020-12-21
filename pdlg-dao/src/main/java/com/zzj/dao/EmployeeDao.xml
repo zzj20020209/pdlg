@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.dao.EmployeeDao">
+    <select id="dl" parameterType="String" resultType="Employee">
+        select * from employee where username=#{username}
+	</select>
+
+    <select id="queryEmployeeAll" resultType="Employee">
+        select * from employee
+        <where>
+            <if test="employees!=null and employees!=''">
+                ename like concat('%',#{employees},'%') or age like concat('%',#{employees},'%') or idCard like concat('%',#{employees},'%')
+                or phone like concat('%',#{employees},'%') or salary like concat('%',#{employees},'%') or mail like concat('%',#{employees},'%')
+            </if>
+            <if test="sex!=null and sex!=''">
+                and sex=#{sex}
+            </if>
+            state=1
+        </where>
+    </select>
+
+    <select id="queryEmployeeCount" resultType="int">
+        select count(*) from employee
+        <where>
+            <if test="employees!=null and employees!=''">
+                ename like concat('%',#{employees},'%') or age like concat('%',#{employees},'%') or idCard like concat('%',#{employees},'%')
+                or phone like concat('%',#{employees},'%') or address like concat('%',#{employees},'%')
+            </if>
+            <if test="sex!=null and sex!=''">
+                and sex=#{sex}
+            </if>
+            state=1
+        </where>
+    </select>
+
+    <select id="queryEmployeeById" parameterType="int" resultType="Employee">
+        select * from employee where id=#{id};
+    </select>
+
+    <select id="queryExist" parameterType="String" resultType="int">
+        select count(*) from employee where `username`=#{username}
+    </select>
+
+    <insert id="addEmployee" parameterType="Employee">
+        insert into employee value(null,#{ename},#{sex},#{age},#{username},#{password},
+        #{phone},#{idCard},#{address},default)
+    </insert>
+
+    <update id="uptEmployee" parameterType="Employee">
+        update employee set ename =#{ename},sex =#{sex}, age =#{age}, username =#{username},
+          password =#{password}, phone =#{phone}, idCard =#{idCard}, address =#{address}, where id=#{id};
+    </update>
+
+    <update id="delEmployee" parameterType="int">
+        update employee set `state`=0 where id=#{id}
+    </update>
+</mapper>

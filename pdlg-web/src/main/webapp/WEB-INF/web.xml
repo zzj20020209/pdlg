@@ -58,4 +58,5 @@
     <filter-name>encodingFilter</filter-name>
     <url-pattern>*.action</url-pattern>
   </filter-mapping>
+
 </web-app>
