@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap id="goodsmapper" type="com.zzj.vo.Goods">
 		<id column="gid" property="gid"></id>
 		<association property="gsid" javaType="com.zzj.vo.GoodSort"
-					 select="com.zzj.dao.GoodSortDao.queryGoodSortBygid" column="gsid"
+					 select="com.zzj.dao.GoodSortDao.queryGoodSortBygid" column="gid"
 					 fetchType="lazy">
 		</association>
 	</resultMap>
@@ -39,16 +39,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryGoodsBygid" parameterType="int" resultMap="goodsmapper">
         select * from goods where gid=#{gid}
     </select>
-	<update id="updateGoods" parameterType="goods">
+	<update id="updateGoods" >
 
 		update goods set
-		gname=#{gname},
-        gunit=#{gunit},
-        gprice=#{gprice},
-        gimage=#{gimage},
-         gsid=#{goodSort.gsid},
-          gstatus=#{gstatus},
-          where gid=#{gid}
+		gname=#{goods.gname},
+        gunit=#{goods.gunit},
+        gprice=#{goods.gprice},
+        gimage=#{goods.gimage},
+         gsid=#{gssid},
+          gstatus=#{goods.gstatus}
+          where gid=#{goods.gid}
 
 	</update>
 	<delete id="deleteGoodsduo" parameterType="int">

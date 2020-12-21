@@ -23,6 +23,14 @@ public class GoodSortController {
     GoodSortService goodSortService;
 
     //通过商品ID查
+    @RequestMapping("/queryGoodSort.action")
+    @CrossOrigin
+    @ResponseBody
+    public  List<GoodSort> queryGoodSort()
+    {
+        return goodSortService.queryGoodSort();
+    }
+    //通过商品ID查
     @RequestMapping("/queryGoodSortBygid.action")
     @CrossOrigin
     @ResponseBody
@@ -66,4 +74,5 @@ public class GoodSortController {
 
         return  msg;
     }
+
 }

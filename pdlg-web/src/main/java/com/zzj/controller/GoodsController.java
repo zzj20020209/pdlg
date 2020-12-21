@@ -54,9 +54,12 @@ public class GoodsController {
     }
     //修改
     @RequestMapping(value ="/updateGoods.action",produces = {"application/json;charset=utf-8"})
+    @CrossOrigin
     @ResponseBody
-    public String updateGoods(Goods goods){
-        int num=goodsService.updateGoods(goods);
+    public String updateGoods(Goods goods,@RequestParam(value = "gssid")Integer gssid){
+        System.out.println(goods);
+        System.out.println(gssid);
+       int num=goodsService.updateGoods(goods,gssid);
         String msg="";
         if(num==1){
             msg="修改成功";

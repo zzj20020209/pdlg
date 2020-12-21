@@ -29,6 +29,7 @@ public class GoodSmallsortController {
         PageVo<GoodSmallsort> pageVo = goodSmallsortService.queryAllGoodSmallsort(goodSmallsort,page,size);
         return pageVo;
     }
+
     //添加
     @RequestMapping(value ="/addGoodSmallsort.actio-n",produces = {"application/json;charset=utf-8"})
     @CrossOrigin
@@ -111,12 +112,5 @@ public class GoodSmallsortController {
     {
         return goodSmallsortService.queryGoodSmallsortBygsid(gsid);
     }
-    //通过大分类ID查小分类
-    @RequestMapping("/queryGoodSmallsortBygbsid.action")
-    @CrossOrigin
-    @ResponseBody
-    public List<GoodSmallsort> queryGoodSmallsortBygbsid(int gbsid)
-    {
-        return goodSmallsortService.queryGoodSmallsortBygbsid(gbsid);
-    }
+
 }

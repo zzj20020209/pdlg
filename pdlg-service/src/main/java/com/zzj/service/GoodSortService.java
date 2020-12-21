@@ -12,4 +12,6 @@ public interface GoodSortService {
     public int deleteGoodSortBygbsid(int gbsid);
     //通过商品ID查分类
     public List<GoodSort> queryGoodSortBygid(int gid);
+    //查询所有
+    public List<GoodSort> queryGoodSort();
 }

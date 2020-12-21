@@ -31,4 +31,9 @@ public class GoodSortServiceImpl implements GoodSortService {
     public List<GoodSort> queryGoodSortBygid(int gid) {
         return goodSortDao.queryGoodSortBygid(gid);
     }
+
+    @Override
+    public List<GoodSort> queryGoodSort() {
+        return goodSortDao.queryGoodSort();
+    }
 }

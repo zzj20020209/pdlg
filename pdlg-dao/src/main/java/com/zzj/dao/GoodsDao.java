@@ -1,6 +1,7 @@
 package com.zzj.dao;
 
 import com.zzj.vo.Goods;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -14,7 +15,8 @@ public interface GoodsDao {
     //通过ID查商品
     public Goods queryGoodsBygid(int gid);
     //修改商品
-    public int updateGoods(Goods goods);
+    public int updateGoods(@Param("goods") Goods goods,
+                           @Param("gssid")int gssid);
     //删除商品
     public int deleteGoods(int gid);
     //批量删除商品
