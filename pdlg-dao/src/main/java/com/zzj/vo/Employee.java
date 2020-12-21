@@ -1,6 +1,6 @@
 package com.zzj.vo;
 
-public class YgVo {
+public class Employee {
     int id;
     String ename;
     String sex;
@@ -12,11 +12,11 @@ public class YgVo {
     String address;
     int state;
 
-    public YgVo(){
+    public Employee(){
 
     }
 
-    public YgVo(int id, String ename, String sex, String age, String username, String password, String phone, String idCard, String address, int state) {
+    public Employee(int id, String ename, String sex, String age, String username, String password, String phone, String idCard, String address, int state) {
         this.id = id;
         this.ename = ename;
         this.sex = sex;

@@ -6,19 +6,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<resultMap id="menumap" type="menuInfo">
 		<id column="id" property="id"></id>
-		<result column="name" property="name"></result>
+		<result column="lable" property="lable"></result>
 		<result column="menucode" property="menuCode"></result>
 		<result column="parentid" property="parentId"></result>
 		<result column="nodetype" property="nodeType"></result>
 		<result column="iconurl" property="iconUrl"></result>
-		<result column="sort" property="sort"></result>
 		<result column="linkurl" property="linkUrl"></result>
 		<result column="level" property="level"></result>
-		<result column="path" property="path"></result>
-		<result column="isdelete" property="isdelete"></result>
 	</resultMap>
 
-	<select id="anj" parameterType="int" resultType="String">
+	<!--<select id="anj" parameterType="int" resultType="String">
 		SELECT m.menucode FROM rolelink er
 		INNER JOIN employee e
 		ON er.id=e.id
@@ -28,5 +25,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		ON rm.mid=m.id
 		WHERE e.id=#{id}
 		ORDER BY m.id
+	</select>-->
+
+	<select id="menuLogin" resultType="Employee">
+		  SELECT * FROM employee WHERE username=#{username} AND password=#{password}
+	</select>
+
+	<select id="queryMenuAll" parameterType="int" resultMap="menumap">
+		SELECT m.* FROM  rolelink r LEFT JOIN employee e ON r.eid=e.id LEFT JOIN role l ON r.rid=l.rid LEFT JOIN `jurisdiction` j ON j.rid=r.rid
+		LEFT JOIN menu m ON j.mid=m.id WHERE e.id=#{id} and m.parentid=#{parentId}
 	</select>
 </mapper>

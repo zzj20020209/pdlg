@@ -6,12 +6,12 @@ public class MenuInfo {
     /**
      * 主键
      */
-    private Long id;
+    private int id;
 
     /**
      * 名称
      */
-    private String name;
+    private String lable;
 
     /**
      * 菜单编码
@@ -21,7 +21,7 @@ public class MenuInfo {
     /**
      * 父节点
      */
-    private Long parentId;
+    private int parentId;
 
     /**
      * 节点类型，1文件夹，2页面，3按钮
@@ -34,11 +34,6 @@ public class MenuInfo {
     private String iconUrl;
 
     /**
-     * 排序号
-     */
-    private Integer sort;
-
-    /**
      * 页面对应的地址
      */
     private String linkUrl;
@@ -49,12 +44,6 @@ public class MenuInfo {
     private Integer level;
 
     /**
-     * 树id的路径 整个层次上的路径id，逗号分隔，想要找父节点特别快
-     */
-    private String path;
-
-    private Integer isdelete;
-    /**
      * 子菜单集合
      */
     List<MenuInfo> childMenu;
@@ -63,28 +52,36 @@ public class MenuInfo {
     //操作权限，checked 为true
     private boolean checked;
 
-    public Long getId() {
-        return id;
+    public MenuInfo() {
     }
 
-    public boolean isChecked() {
-        return checked;
-    }
-
-    public void setChecked(boolean checked) {
+    public MenuInfo(int id, String lable, String menuCode, int parentId, Integer nodeType, String iconUrl, String linkUrl, Integer level, List<MenuInfo> childMenu, boolean checked) {
+        this.id = id;
+        this.lable = lable;
+        this.menuCode = menuCode;
+        this.parentId = parentId;
+        this.nodeType = nodeType;
+        this.iconUrl = iconUrl;
+        this.linkUrl = linkUrl;
+        this.level = level;
+        this.childMenu = childMenu;
         this.checked = checked;
     }
 
-    public void setId(Long id) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getLable() {
+        return lable;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLable(String lable) {
+        this.lable = lable;
     }
 
     public String getMenuCode() {
@@ -95,11 +92,11 @@ public class MenuInfo {
         this.menuCode = menuCode;
     }
 
-    public Long getParentId() {
+    public int getParentId() {
         return parentId;
     }
 
-    public void setParentId(Long parentId) {
+    public void setParentId(int parentId) {
         this.parentId = parentId;
     }
 
@@ -119,14 +116,6 @@ public class MenuInfo {
         this.iconUrl = iconUrl;
     }
 
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
-
     public String getLinkUrl() {
         return linkUrl;
     }
@@ -143,27 +132,19 @@ public class MenuInfo {
         this.level = level;
     }
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public Integer getIsdelete() {
-        return isdelete;
-    }
-
-    public void setIsdelete(Integer isdelete) {
-        this.isdelete = isdelete;
-    }
-
     public List<MenuInfo> getChildMenu() {
         return childMenu;
     }
 
     public void setChildMenu(List<MenuInfo> childMenu) {
         this.childMenu = childMenu;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 }
