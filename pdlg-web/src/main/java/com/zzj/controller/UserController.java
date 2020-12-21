@@ -29,7 +29,6 @@ public class UserController {
     public Map<String,Object> login(User user, HttpSession session){
         Map<String,Object> msg = new HashMap<String,Object>();
         User userLogin = userService.login(user);
-        System.out.println(userLogin);
         if (userLogin!=null){
             session.setAttribute("user",userLogin);
             msg.put("flag",true);
