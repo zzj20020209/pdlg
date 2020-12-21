@@ -31,7 +31,7 @@ public class GoodsController {
 
 
     //添加22
-    @RequestMapping(value ="/addGoods.actio-n",produces = {"application/json;charset=utf-8"})
+    @RequestMapping(value ="/addGoods.action",produces = {"application/json;charset=utf-8"})
     @CrossOrigin
     @ResponseBody
     public String addGoods(Goods goods){
