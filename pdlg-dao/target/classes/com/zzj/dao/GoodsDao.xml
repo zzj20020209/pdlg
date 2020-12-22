@@ -29,7 +29,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<insert id="addGoods" parameterType="goods">
 		INSERT INTO goods(gname,gunit,gprice,gimage,gsid,gstatus)
-		values (#{gname},#{gunit},#{gprice},#{gimage},#{goodSort.gsid},#{gstatus})
+		values (#{goods.gname},#{goods.gunit},#{goods.gprice}
+		,#{goods.gimage},#{gssid},default )
 	</insert>
 
 	<delete id="deleteGoods" parameterType="int">
