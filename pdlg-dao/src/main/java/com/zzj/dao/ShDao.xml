@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="shcx" parameterType="Shvo" resultType="Shvo">
         select * from shanghu
         <where>
-            <if test="sname!=null"> and sname like concat("%"+#{sname}+"%")</if>
+            <if test="sname!=null and sname!=''"> and sname like concat("%",#{sname},"%")</if>
              and state=1
         </where>
 
@@ -14,11 +14,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="shcxs" parameterType="Shvo" resultType="int">
         select count(*) from shanghu
         <where>
-            <if test="sname!=null"> and sname like concat("%"+#{sname}+"%")</if>
+            <if test="sname!=null and sname!=''"> and sname like concat("%",#{sname},"%")</if>
              and state=1
         </where>
-
     </select>
+
     <update id="shdel" parameterType="Shvo">
         update shanghu set state=0 where sid=#{sid}
     </update>
@@ -29,16 +29,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update shanghu set sname=#{sname},yhm=#{yhm},password=#{password},address=#{address},stele=#{stele} where sid=#{sid}
     </update>
     <insert id="shzc" parameterType="Shvo" >
-        insert into shanghu values(null,#{sname},#{yhm},#{password},#{address},#{stele},null)
+        insert into shanghu values(null,#{sname},#{yhm},#{password},#{address},#{stele},2)
     </insert>
-    <update id="shsp" parameterType="Shvo">
+
+    <update id="shspcg" parameterType="Shvo">
         update shanghu set state=1 where sid=#{sid}
     </update>
+    <update id="shspsb" parameterType="Shvo">
+        update shanghu set state=0 where sid=#{sid}
+    </update>
+
 
     <select id="shspcx" parameterType="Shvo" resultType="Shvo">
         select * from shanghu
         <where>
-            <if test="sname!=null"> and sname like concat("%"+#{sname}+"%")</if>
+            <if test="yhm!=null and yhm=''"> and yhm like concat("%",#{yhm},"%")</if>
             and state=2
         </where>
 
@@ -46,7 +51,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="shspcxs" parameterType="Shvo" resultType="int">
         select count(*) from shanghu
         <where>
-            <if test="sname!=null"> and sname like concat("%"+#{sname}+"%")</if>
+            <if test="yhm!=null and yhm=''"> and yhm like concat("%",#{yhm},"%")</if>
             and state=2
         </where>
 

@@ -29,10 +29,12 @@ public class UserController {
     public Map<String,Object> login(User user, HttpSession session){
         Map<String,Object> msg = new HashMap<String,Object>();
         User userLogin = userService.login(user);
+
         if (userLogin!=null){
             session.setAttribute("user",userLogin);
+            msg.put("yhname",userLogin.getName());
             msg.put("username",userLogin.getUsername());
-            msg.put("uid",userLogin.getUid());
+            msg.put("mm",userLogin.getPassword());
             msg.put("mag","登录成功");
             msg.put("code","0");
         }else {
