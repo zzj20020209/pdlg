@@ -15,6 +15,8 @@ public interface GoodsDao {
                         @Param("gssid")int gssid);
     //通过ID查商品
     public Goods queryGoodsBygid(int gid);
+    //查
+    public Goods queryGoodsBygname(Goods goods);
     //修改商品
     public int updateGoods(@Param("goods") Goods goods,
                            @Param("gssid")int gssid);
@@ -22,4 +24,7 @@ public interface GoodsDao {
     public int deleteGoods(int gid);
     //批量删除商品
     public int deleteGoodsduo(int[] ids);
+    //根据供应ID查
+    public Goods queryGoodsBysuid(int suid);
+
 }

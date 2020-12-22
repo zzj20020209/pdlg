@@ -19,5 +19,9 @@ public interface GoodsService {
     public int deleteGoods(int gid);
     //批量删除商品
     public int deleteGoodsduo(int[] ids);
+    //查
+    public Goods queryGoodsBygname(Goods goods);
+    //根据供应ID查
+    public Goods queryGoodsBysuid(int suid);
 
 }

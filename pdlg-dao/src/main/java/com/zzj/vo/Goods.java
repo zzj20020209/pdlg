@@ -3,6 +3,7 @@ package com.zzj.vo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.util.List;
 
 @JsonIgnoreProperties("handler")
 public class Goods implements Serializable {
@@ -13,9 +14,18 @@ public class Goods implements Serializable {
     private String gimage;
     private GoodSort gsid;
     private  int gstatus;
-    //aa
+    //图片集合
+    private List<GoodsImage> goodsImagelist;
 
     public Goods() {
+    }
+
+    public List<GoodsImage> getGoodsImagelist() {
+        return goodsImagelist;
+    }
+
+    public void setGoodsImagelist(List<GoodsImage> goodsImagelist) {
+        this.goodsImagelist = goodsImagelist;
     }
 
     @Override

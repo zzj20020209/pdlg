@@ -53,4 +53,14 @@ public class GoodsServiceImpl implements GoodsService {
     public int deleteGoodsduo(int[] ids) {
         return goodsDao.deleteGoodsduo(ids);
     }
+
+    @Override
+    public Goods queryGoodsBygname(Goods goods) {
+        return goodsDao.queryGoodsBygname(goods);
+    }
+
+    @Override
+    public Goods queryGoodsBysuid(int suid) {
+        return goodsDao.queryGoodsBysuid(suid);
+    }
 }

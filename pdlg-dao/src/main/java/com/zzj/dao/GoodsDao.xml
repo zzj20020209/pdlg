@@ -9,12 +9,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					 select="com.zzj.dao.GoodSortDao.queryGoodSortBygid" column="gid"
 					 fetchType="lazy">
 		</association>
+		<collection property="goodsImagelist" javaType="list" ofType="com.zzj.vo.GoodsImage"
+					column="gid" select="com.zzj.dao.GoodsImageDao.queryAllGoodsImageBygid"
+					fetchType="lazy">
+		</collection>
+
 	</resultMap>
 	<select id="queryAllGoods" parameterType="goods" resultMap="goodsmapper">
 
 		select * from goods
 		<where>
-			<if test="gname!=null">and gname like concat('%',#{gname},'%') </if>
+			<if test="gname!=null  and gname!=''">and gname like concat('%',#{gname},'%') </if>
+			<if test="gstatus!=null and gstatus!='' ">and gstatus =#{gstatus} </if>
 		</where>
 
 	</select>
@@ -22,12 +28,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="querycountGoods" parameterType="goods" resultType="int">
 		select count(*) FROM goods
 		<where>
-			<if test="gname!=null">and gname like concat('%',#{gname},'%') </if>
+			<if test="gname!=null and gname!='' ">and gname like concat('%',#{gname},'%') </if>
+			<if test="gstatus!=null and gstatus!=''">and gstatus =#{gstatus} </if>
 		</where>
 	</select>
 
 
-	<insert id="addGoods" parameterType="goods">
+	<insert id="addGoods" parameterType="goods" useGeneratedKeys="true" keyColumn="gid" keyProperty="gid">
 		INSERT INTO goods(gname,gunit,gprice,gimage,gsid,gstatus)
 		values (#{goods.gname},#{goods.gunit},#{goods.gprice}
 		,#{goods.gimage},#{gssid},default )
@@ -39,6 +46,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	<select id="queryGoodsBygid" parameterType="int" resultMap="goodsmapper">
         select * from goods where gid=#{gid}
+    </select>
+	<select id="queryGoodsBygname" parameterType="goods" resultMap="goodsmapper">
+		select * from goods where gname=#{gname}
+    </select>
+	<select id="queryGoodsBysuid" parameterType="int" resultMap="goodsmapper">
+            SELECT g.* FROM goods g INNER JOIN supply s ON s.`sid`=g.gid
+            WHERE s.suid=#{suid}
     </select>
 	<update id="updateGoods" >
 
