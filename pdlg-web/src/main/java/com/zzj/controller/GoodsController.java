@@ -34,8 +34,8 @@ public class GoodsController {
     @RequestMapping(value ="/addGoods.action",produces = {"application/json;charset=utf-8"})
     @CrossOrigin
     @ResponseBody
-    public String addGoods(Goods goods){
-        int num=goodsService.addGoods(goods);
+    public String addGoods(Goods goods,@RequestParam(value = "gssid")Integer gssid){
+        int num=goodsService.addGoods(goods,gssid);
         String msg="";
         if(num==1){
             msg="添加成功";
