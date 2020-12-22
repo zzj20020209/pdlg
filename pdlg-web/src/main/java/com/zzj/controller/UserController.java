@@ -31,9 +31,13 @@ public class UserController {
         User userLogin = userService.login(user);
         if (userLogin!=null){
             session.setAttribute("user",userLogin);
-            msg.put("flag",true);
+            msg.put("username",userLogin.getUsername());
+            msg.put("uid",userLogin.getUid());
+            msg.put("mag","登录成功");
+            msg.put("code","0");
         }else {
-            msg.put("flag",false);
+            msg.put("code","1");
+            msg.put("mag","账号或密码错误");
         }
         return msg;
     }
@@ -46,6 +50,7 @@ public class UserController {
         User userName = userService.queryUserName(user.getUsername());
         if (userName!=null){
             msg.put("flag",false);
+
             return msg;
         }
         int rows = userService.register(user);
