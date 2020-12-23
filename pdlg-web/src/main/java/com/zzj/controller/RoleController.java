@@ -55,7 +55,7 @@ public class RoleController {
     @ResponseBody
     public Map uptRole(Role role) {
         Map map = new HashMap();
-        if (roleService.queryRoleExist(role.getRolename(),role.getRid()) == 0) {
+        if (roleService.queryRoleExist(role.getRolename(),role.getRid()) < 2) {
             if (roleService.uptRole(role) > 0) {
                 map.put("msg", "修改成功");
             }
