@@ -7,18 +7,18 @@
     </select>
 
     <insert id="register" parameterType="user">
-        insert into user(username,password) values (username=#{username},password=#{password})
+        insert into user(username,password) values (#{username},#{password})
     </insert>
 
     <update id="updateUser" parameterType="user">
         update from user
         <set>
-            <if test="image!=null and image!=''">and image=#{image}</if>
-            <if test="name!=null and name!=''">and name=#{name}</if>
-            <if test="sex!=null and sex!=''">and sex=#{sex}</if>
-            <if test="phone!=null and phone!=''">and phone=#{phone}</if>
-            <if test="address!=null and address!=''">and address=#{address}</if>
-            <if test="price!=null and price!=''">and price=#{price}</if>
+            <if test="image!=null and image!=''">image=#{image},</if>
+            <if test="name!=null and name!=''">name=#{name},</if>
+            <if test="sex!=null and sex!=''">sex=#{sex},</if>
+            <if test="phone!=null and phone!=''">phone=#{phone},</if>
+            <if test="address!=null and address!=''">address=#{address},</if>
+            <if test="price!=null and price!=''">price=#{price}</if>
         </set>
     </update>
 
@@ -27,6 +27,10 @@
     </select>
 
     <select id="queryAllUser" parameterType="user" resultType="user">
+        select * from user
+    </select>
+
+    <select id="queryUserByCount" parameterType="user" resultType="int">
         select * from user
     </select>
 
