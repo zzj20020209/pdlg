@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.dao.SupplyDao">
+	<resultMap id="supplymapper" type="com.zzj.vo.Supply">
+		<id column="suid" property="suid"></id>
+		<association property="warehouse" javaType="com.zzj.vo.Warehouse"
+					 select="com.zzj.dao.WarehouseDao.queryWarehouseBysuid" column="suid"
+					 fetchType="lazy">
+		</association>
+		<association property="goods" javaType="com.zzj.vo.Goods"
+					 select="com.zzj.dao.GoodsDao.queryGoodsBysuid" column="suid"
+					 fetchType="lazy">
+		</association>
+
+	</resultMap>
+	<select id="querySupplyBywid" parameterType="int" resultMap="supplymapper">
+	SELECT s.* FROM supply s INNER JOIN warehouse w  ON s.`wid`=w.`wid`
+	WHERE w.wid=#{wid}
+    </select>
+
+
+</mapper>

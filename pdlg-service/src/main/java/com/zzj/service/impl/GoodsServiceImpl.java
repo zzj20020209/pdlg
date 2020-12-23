@@ -27,9 +27,10 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public int addGoods(Goods goods) {
-        return goodsDao.addGoods(goods);
+    public int addGoods(Goods goods, int gssid) {
+        return goodsDao.addGoods(goods,gssid);
     }
+
 
     @Override
     public Goods queryGoodsBygid(int gid) {
@@ -37,9 +38,11 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public int updateGoods(Goods goods) {
-        return goodsDao.updateGoods(goods);
+    public int updateGoods(Goods goods, int gssid) {
+        return goodsDao.updateGoods(goods,gssid);
     }
+
+
 
     @Override
     public int deleteGoods(int gid) {
@@ -49,5 +52,15 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public int deleteGoodsduo(int[] ids) {
         return goodsDao.deleteGoodsduo(ids);
+    }
+
+    @Override
+    public Goods queryGoodsBygname(Goods goods) {
+        return goodsDao.queryGoodsBygname(goods);
+    }
+
+    @Override
+    public Goods queryGoodsBysuid(int suid) {
+        return goodsDao.queryGoodsBysuid(suid);
     }
 }

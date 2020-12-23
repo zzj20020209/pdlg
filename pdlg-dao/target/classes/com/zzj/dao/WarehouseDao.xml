@@ -3,7 +3,18 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zzj.dao.WarehouseDao">
-	<select id="queryAllWarehouse" parameterType="warehouse" resultType="warehouse">
+	<resultMap id="warehousemapper" type="com.zzj.vo.Warehouse">
+		<id column="wid" property="wid"></id>
+		<collection property="supplyList" javaType="list" ofType="com.zzj.vo.Supply"
+					column="wid" select="com.zzj.dao.SupplyDao.querySupplyBywid"
+					fetchType="lazy">
+		</collection>
+
+	</resultMap>
+	<resultMap id="warehousemapper1" type="com.zzj.vo.Warehouse">
+		<id column="wid" property="wid"></id>
+	</resultMap>
+	<select id="queryAllWarehouse" parameterType="warehouse" resultMap="warehousemapper">
 
 		select * from warehouse
 		<where>
@@ -21,16 +32,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<insert id="addWarehouse" parameterType="warehouse">
-		INSERT INTO warehouse(wname,waddress,wstatus)
-		values (#{wname},#{waddress},default )
+		INSERT INTO warehouse(wname,waddress,wzkucun,wskucun,wstatus)
+		values (#{wname},#{waddress},#{wzkucun},#{wzkucun},default )
 	</insert>
 
 	<delete id="deleteWarehouse" parameterType="int">
 		update warehouse set wstatus=1 where wid=#{wid}
 
 	</delete>
-	<select id="queryWarehouseBywid" parameterType="int" resultType="warehouse">
+	<select id="queryWarehouseBywid" parameterType="int" resultMap="warehousemapper">
         select * from warehouse where wid=#{wid}
+    </select>
+	<select id="queryWarehouseBysuid" parameterType="int" resultMap="warehousemapper1">
+        SELECT w.* FROM warehouse w INNER JOIN supply s ON s.`wid`=w.`wid`
+        WHERE s.suid=#{suid}
     </select>
 	<update id="updateWarehouse" parameterType="warehouse">
 

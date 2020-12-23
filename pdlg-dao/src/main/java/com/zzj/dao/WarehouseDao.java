@@ -19,4 +19,6 @@ public interface WarehouseDao {
     public int deleteWarehouse(int wid);
     //批量删除
     public int deleteWarehouseduo(int[] ids);
+    //根据供应ID查
+    public Warehouse queryWarehouseBysuid(int suid);
 }

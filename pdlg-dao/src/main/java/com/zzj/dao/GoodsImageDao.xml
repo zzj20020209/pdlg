@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.dao.GoodsImageDao">
+	<select id="queryAllGoodsImageBygid" parameterType="int" resultType="goodsImage">
+        select * from goodsimage where gid=#{gid}
+    </select>
+
+    <insert id="addGoodsImageBygidgiurl" parameterType="list">
+        INSERT INTO goodsimage(giurl,gid)
+        values
+        <foreach collection="list" item="goodsImageList" index="index" separator="," >
+            (#{goodsImageList.giurl},#{goodsImageList.gid})
+        </foreach>
+    </insert>
+    <delete id="deleteGoodsImageBygid" parameterType="int">
+		DELETE FROM goodsimage WHERE gid=#{gid};
+	</delete>
+
+</mapper>

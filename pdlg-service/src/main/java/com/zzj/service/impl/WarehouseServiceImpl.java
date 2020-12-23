@@ -51,4 +51,9 @@ public class WarehouseServiceImpl implements WarehouseService {
     public int deleteWarehouseduo(int[] ids) {
         return warehouseDao.deleteWarehouseduo(ids);
     }
+
+    @Override
+    public Warehouse queryWarehouseBysuid(int suid) {
+        return warehouseDao.queryWarehouseBysuid(suid);
+    }
 }

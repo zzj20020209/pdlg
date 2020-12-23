@@ -6,15 +6,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<resultMap id="goodsmapper" type="com.zzj.vo.Goods">
 		<id column="gid" property="gid"></id>
 		<association property="gsid" javaType="com.zzj.vo.GoodSort"
-					 select="com.zzj.dao.GoodSortDao.queryGoodSortBygid" column="gsid"
+					 select="com.zzj.dao.GoodSortDao.queryGoodSortBygid" column="gid"
 					 fetchType="lazy">
 		</association>
+		<collection property="goodsImagelist" javaType="list" ofType="com.zzj.vo.GoodsImage"
+					column="gid" select="com.zzj.dao.GoodsImageDao.queryAllGoodsImageBygid"
+					fetchType="lazy">
+		</collection>
+
 	</resultMap>
 	<select id="queryAllGoods" parameterType="goods" resultMap="goodsmapper">
 
 		select * from goods
 		<where>
-			<if test="gname!=null">and gname like concat('%',#{gname},'%') </if>
+			<if test="gname!=null  and gname!=''">and gname like concat('%',#{gname},'%') </if>
+			<if test="gstatus!=null and gstatus!='' ">and gstatus =#{gstatus} </if>
 		</where>
 
 	</select>
@@ -22,14 +28,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="querycountGoods" parameterType="goods" resultType="int">
 		select count(*) FROM goods
 		<where>
-			<if test="gname!=null">and gname like concat('%',#{gname},'%') </if>
+			<if test="gname!=null and gname!='' ">and gname like concat('%',#{gname},'%') </if>
+			<if test="gstatus!=null and gstatus!=''">and gstatus =#{gstatus} </if>
 		</where>
 	</select>
 
 
-	<insert id="addGoods" parameterType="goods">
+	<insert id="addGoods" parameterType="goods" useGeneratedKeys="true" keyColumn="gid" keyProperty="gid">
 		INSERT INTO goods(gname,gunit,gprice,gimage,gsid,gstatus)
-		values (#{gname},#{gunit},#{gprice},#{gimage},#{goodSort.gsid},#{gstatus})
+		values (#{goods.gname},#{goods.gunit},#{goods.gprice}
+		,#{goods.gimage},#{gssid},default )
 	</insert>
 
 	<delete id="deleteGoods" parameterType="int">
@@ -39,16 +47,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="queryGoodsBygid" parameterType="int" resultMap="goodsmapper">
         select * from goods where gid=#{gid}
     </select>
-	<update id="updateGoods" parameterType="goods">
+	<select id="queryGoodsBygname" parameterType="goods" resultMap="goodsmapper">
+		select * from goods where gname=#{gname}
+    </select>
+	<select id="queryGoodsBysuid" parameterType="int" resultMap="goodsmapper">
+            SELECT g.* FROM goods g INNER JOIN supply s ON s.`sid`=g.gid
+            WHERE s.suid=#{suid}
+    </select>
+	<update id="updateGoods" >
 
 		update goods set
-		gname=#{gname},
-        gunit=#{gunit},
-        gprice=#{gprice},
-        gimage=#{gimage},
-         gsid=#{goodSort.gsid},
-          gstatus=#{gstatus},
-          where gid=#{gid}
+		gname=#{goods.gname},
+        gunit=#{goods.gunit},
+        gprice=#{goods.gprice},
+        gimage=#{goods.gimage},
+         gsid=#{gssid},
+          gstatus=#{goods.gstatus}
+          where gid=#{goods.gid}
 
 	</update>
 	<delete id="deleteGoodsduo" parameterType="int">

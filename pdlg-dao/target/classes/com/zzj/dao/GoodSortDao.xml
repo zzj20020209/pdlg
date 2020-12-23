@@ -26,6 +26,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
     <select id="queryGoodSortBygid" parameterType="int" resultMap="goodSortMap">
              SELECT s.* FROM goodsort s INNER JOIN goods g ON s.`gsid`=g.gsid
-              where s.gsid=#{gsid}
+              where g.gid=#{gid}
+    </select>
+    <select id="queryGoodSort" resultMap="goodSortMap">
+             SELECT * FROM goodsort
     </select>
 </mapper>
