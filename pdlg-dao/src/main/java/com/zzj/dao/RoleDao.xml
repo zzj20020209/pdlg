@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zzj.dao.RoleDao">
+
+    <select id="queryRoleAll" resultType="Role">
+        select * from role
+        <where>
+            <if test="rolename != null and rolename != ''">rolename like concat('%',#{rolename},'%')</if>
+        </where>
+    </select>
+
+    <select id="queryRoleCount" resultType="int">
+        select count(*) from role
+        <where>
+            <if test="rolename != null and rolename != ''">rolename like concat('%',#{rolename},'%')</if>
+        </where>
+    </select>
+
+    <select id="queryRoleExist" resultType="int">
+        select count(*) from role <where>
+        <if test="rolename != null and rolename!= ''">rolename=#{rolename}</if>
+        <if test="rid != 0">or rid=#{rid}</if>
+    </where>
+    </select>
+
+    <select id="queryRoleById" resultType="Role">
+        select * from role where rid=#{rid}
+    </select>
+
+    <select id="queryEmployeeExist" parameterType="int" resultType="int">
+        	SELECT COUNT(*) FROM rolelink l LEFT JOIN employee e ON l.eid=e.id LEFT JOIN role r ON l.rid=r.rid WHERE r.rid=#{rid}
+    </select>
+
+    <insert id="addRole" parameterType="Role">
+        INSERT INTO Role SET rolename=#{rolename},`explain`=#{explain}
+    </insert>
+
+    <update id="uptRole" parameterType="Role">
+        update role set  rolename=#{rolename},`explain`=#{explain} where rid=#{rid}
+    </update>
+
+    <delete id="delRole" parameterType="int">
+        delete from role where rid=#{rid}
+    </delete>
+</mapper>

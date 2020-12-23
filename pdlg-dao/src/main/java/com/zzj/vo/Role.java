@@ -3,7 +3,7 @@ package com.zzj.vo;
 import java.util.List;
 
 
-public class RoleInfo {
+public class Role {
     private Integer rid;
     private String rolename;
     private String explain;
