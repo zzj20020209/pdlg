@@ -12,6 +12,8 @@ public interface UserDao {
 
     public int updateUser(User user);
 
+    public int delUser(int id);
+
     public User queryUserById(int id);
 
     public List<User> queryAllUser(User user);
