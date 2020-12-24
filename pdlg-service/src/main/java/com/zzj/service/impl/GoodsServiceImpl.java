@@ -8,6 +8,8 @@ import com.zzj.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GoodsServiceImpl implements GoodsService {
     @Autowired
@@ -62,5 +64,10 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public Goods queryGoodsBysuid(int suid) {
         return goodsDao.queryGoodsBysuid(suid);
+    }
+
+    @Override
+    public List<Goods> queryAllGoodsall(Goods goods) {
+        return goodsDao.queryAllGoods(goods);
     }
 }

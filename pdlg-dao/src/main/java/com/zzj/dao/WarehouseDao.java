@@ -21,4 +21,6 @@ public interface WarehouseDao {
     public int deleteWarehouseduo(int[] ids);
     //根据供应ID查
     public Warehouse queryWarehouseBysuid(int suid);
+    //查询商品不在的仓库
+    public List<Warehouse> queryAllWarehouseNOInwid(int wid);
 }
