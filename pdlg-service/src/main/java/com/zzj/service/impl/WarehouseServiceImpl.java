@@ -8,6 +8,8 @@ import com.zzj.vo.Warehouse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class WarehouseServiceImpl implements WarehouseService {
     @Autowired
@@ -55,5 +57,15 @@ public class WarehouseServiceImpl implements WarehouseService {
     @Override
     public Warehouse queryWarehouseBysuid(int suid) {
         return warehouseDao.queryWarehouseBysuid(suid);
+    }
+
+    @Override
+    public List<Warehouse> queryAllWarehouseall(Warehouse warehouse) {
+        return warehouseDao.queryAllWarehouse(warehouse);
+    }
+
+    @Override
+    public List<Warehouse> queryAllWarehouseNOInwid(int wid) {
+        return warehouseDao.queryAllWarehouseNOInwid(wid);
     }
 }

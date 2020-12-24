@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		update warehouse set
 		wname=#{wname},
         waddress=#{waddress},
-        wstatus=#{wstatus},
+        wstatus=#{wstatus}
           where wid=#{wid}
 
 	</update>
@@ -62,5 +62,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			#{wid}
 		</foreach>
 	</delete>
+	<select id="queryAllWarehouseNOInwid" parameterType="int" resultMap="warehousemapper1">
+
+		     SELECT * FROM warehouse WHERE wid !=#{wid}
+
+	</select>
 
 </mapper>
