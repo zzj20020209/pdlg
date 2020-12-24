@@ -7,11 +7,12 @@
     </select>
 
     <insert id="register" parameterType="user">
-        insert into user(username,password) values (#{username},#{password})
+        insert into user(image,username,password,name,sex,phone,address) values
+            (#{image},#{username},#{password},#{name},#{sex},#{phone},#{address})
     </insert>
 
     <update id="updateUser" parameterType="user">
-        update from user
+        update user
         <set>
             <if test="image!=null and image!=''">image=#{image},</if>
             <if test="name!=null and name!=''">name=#{name},</if>
@@ -22,16 +23,33 @@
         </set>
     </update>
 
+    <update id="delUser" parameterType="int">
+        update user set state = 0 where uid = #{id}
+    </update>
     <select id="queryUserById" parameterType="int" resultType="user">
         select * from user where uid = #{uid}
     </select>
 
     <select id="queryAllUser" parameterType="user" resultType="user">
         select * from user
+        <where>
+            <if test="name!=null and name!=''">and name like concat('%',#{name},'%')</if>
+            <if test="sex!=null and sex!=''">and sex like concat('%',#{sex},'%')</if>
+            <if test="phone!=null and phone!=''">and phone like concat('%',#{phone},'%')</if>
+            <if test="address!=null and address!=''">and address like concat('%',#{address},'%')</if>
+            state = 1
+        </where>
     </select>
 
     <select id="queryUserByCount" parameterType="user" resultType="int">
-        select * from user
+        select count(*) from user
+        <where>
+            <if test="name!=null and name!=''">and name like concat('%',#{name},'%')</if>
+            <if test="sex!=null and sex!=''">and sex like concat('%',#{sex},'%')</if>
+            <if test="phone!=null and phone!=''">and phone like concat('%',#{phone},'%')</if>
+            <if test="address!=null and address!=''">and address like concat('%',#{address},'%')</if>
+            state = 1
+        </where>
     </select>
 
     <select id="queryUserName" parameterType="String" resultType="user">

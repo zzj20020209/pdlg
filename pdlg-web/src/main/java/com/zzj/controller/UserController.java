@@ -52,7 +52,6 @@ public class UserController {
         User userName = userService.queryUserName(user.getUsername());
         if (userName!=null){
             msg.put("flag",false);
-
             return msg;
         }
         int rows = userService.register(user);
@@ -83,6 +82,20 @@ public class UserController {
        return msg;
     }
 
+    @RequestMapping("/delUser.action")
+    @ResponseBody
+    @CrossOrigin
+    public Map<String,Object> delUser(int id){
+        Map<String,Object> map = new HashMap<String,Object>();
+        int rows = userService.delUser(id);
+        if(rows==1){
+            map.put("flag",true);
+        }else {
+            map.put("flag",false);
+        }
+        return map;
+    }
+
     @RequestMapping("/queryUserById.action")
     @ResponseBody
     @CrossOrigin
@@ -94,7 +107,7 @@ public class UserController {
     @ResponseBody
     @CrossOrigin
     public PageVo<User> queryAllUser(User user, @RequestParam(value = "page", defaultValue = "1") int page,
-                                    @RequestParam(value = "rows", defaultValue = "10") int rows){
+                                    @RequestParam(value = "rows", defaultValue = "5") int rows){
         return userService.queryAllUser(user,page,rows);
     }
 }

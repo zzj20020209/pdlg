@@ -11,6 +11,8 @@ public interface UserService {
 
     public int updateUser(User user);
 
+    public int delUser(int id);
+
     public User queryUserById(int id);
 
     public PageVo<User> queryAllUser(User user, int page, int rows);
