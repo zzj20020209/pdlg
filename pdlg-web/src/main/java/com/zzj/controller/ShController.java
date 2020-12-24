@@ -87,7 +87,7 @@ public class ShController {
     public String shzc(Shvo shvo){
         int num=shService.shzc(shvo);
         if(num==1){
-            return "注册申请成功";
+            return "注册申请成功;请耐心等待审批通知！";
         }
         return "注册失败";
     }

@@ -12,10 +12,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <where>
             <if test="employees!=null and employees!=''">
                 ename like concat('%',#{employees},'%') or age like concat('%',#{employees},'%') or idCard like concat('%',#{employees},'%')
-                or phone like concat('%',#{employees},'%') or salary like concat('%',#{employees},'%') or mail like concat('%',#{employees},'%')
-            </if>
-            <if test="sex!=null and sex!=''">
-                and sex=#{sex}
+                or phone like concat('%',#{employees},'%')or address like concat('%',#{employees},'%')
+                or sex like concat('%',#{employees},'%') and
             </if>
             state=1
         </where>
@@ -27,9 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             <if test="employees!=null and employees!=''">
                 ename like concat('%',#{employees},'%') or age like concat('%',#{employees},'%') or idCard like concat('%',#{employees},'%')
                 or phone like concat('%',#{employees},'%') or address like concat('%',#{employees},'%')
-            </if>
-            <if test="sex!=null and sex!=''">
-                and sex=#{sex}
+                or sex like concat('%',#{employees},'%') and
             </if>
             state=1
         </where>

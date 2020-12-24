@@ -83,7 +83,7 @@ public class EmployeeController {
     @ResponseBody
     public Map addEmployee(Employee employee) {
         Map map = new HashMap();
-        if(employeeService.queryExist(employee.getUsername())>0){
+        if(employeeService.queryExist(employee.getUsername())==0){
             if(employeeService.addEmployee(employee)>0){
                 map.put("msg","添加成功");
             }
@@ -96,9 +96,8 @@ public class EmployeeController {
     @ResponseBody
     public Map uptEmployee(Employee employee) {
         Map map = new HashMap();
-        if(employeeService.queryExist(employee.getUsername())>0){
-            if(employeeService.uptEmployee(
-                    employee)>0){
+        if(employeeService.queryExist(employee.getUsername())==0){
+            if(employeeService.uptEmployee(employee)>0){
                 map.put("msg","修改成功");
             }
         }

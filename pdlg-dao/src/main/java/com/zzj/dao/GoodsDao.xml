@@ -17,20 +17,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	<select id="queryAllGoods" parameterType="goods" resultMap="goodsmapper">
 
-		select * from goods
+		SELECT g.* FROM goods g INNER JOIN goodsort gs ON gs.gsid=g.gsid
+		INNER JOIN goodbigsort gbs ON gs.gbsid=gbs.gbsid
 		<where>
-			<if test="gname!=null  and gname!=''">and gname like concat('%',#{gname},'%') </if>
-			<if test="gstatus!=null and gstatus!='' ">and gstatus =#{gstatus} </if>
+			<if test="gname!=null  and gname!=''">and g.gname like concat('%',#{gname},'%') </if>
+			<if test="gstatus!=0 ">and g.gstatus =#{gstatus} </if>
+			<if test="gsid!=null">
+				<if test="gsid.goodBigSort!=null">
+					<if test="gsid.goodBigSort.gbsname!=null  and gsid.goodBigSort.gbsname!=''">
+						and gbs.gbsname like concat('%',#{gsid.goodBigSort.gbsname},'%')
+					</if>
+				</if>
+			</if>
 		</where>
-
+		ORDER BY g.gid ASC
 	</select>
 
 	<select id="querycountGoods" parameterType="goods" resultType="int">
-		select count(*) FROM goods
+		select count(*) FROM goods g INNER JOIN goodsort gs ON gs.gsid=g.gsid
+		INNER JOIN goodbigsort gbs ON gs.gbsid=gbs.gbsid
 		<where>
-			<if test="gname!=null and gname!='' ">and gname like concat('%',#{gname},'%') </if>
-			<if test="gstatus!=null and gstatus!=''">and gstatus =#{gstatus} </if>
+			<if test="gname!=null  and gname!=''">and g.gname like concat('%',#{gname},'%') </if>
+			<if test="gstatus!=0 ">and g.gstatus =#{gstatus} </if>
+			<if test="gsid!=null">
+				<if test="gsid.goodBigSort!=null">
+					<if test="gsid.goodBigSort.gbsname!=null  and gsid.goodBigSort.gbsname!=''">
+						and gbs.gbsname like concat('%',#{gsid.goodBigSort.gbsname},'%')
+					</if>
+				</if>
+			</if>
 		</where>
+		ORDER BY g.gid ASC
 	</select>
 
 
@@ -42,7 +59,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<delete id="deleteGoods" parameterType="int">
 		update goods set gstatus=1 where gid=#{gid}
-
 	</delete>
 	<select id="queryGoodsBygid" parameterType="int" resultMap="goodsmapper">
         select * from goods where gid=#{gid}
@@ -55,7 +71,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             WHERE s.suid=#{suid}
     </select>
 	<update id="updateGoods" >
-
 		update goods set
 		gname=#{goods.gname},
         gunit=#{goods.gunit},
