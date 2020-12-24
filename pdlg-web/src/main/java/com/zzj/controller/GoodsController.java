@@ -35,7 +35,13 @@ public class GoodsController {
         System.out.println("page"+goods);
         return pageVo;
     }
-
+    //查询所有
+    @RequestMapping("/queryAllGoodsall.action")
+    @CrossOrigin
+    @ResponseBody  //通知框架   返回的集合，vo，map  转成json格式  jackson.jar
+    public List<Goods> queryAllGoodsall(Goods goods){
+        return goodsService.queryAllGoodsall(goods);
+    }
 
 
     //添加22
@@ -93,17 +99,37 @@ public class GoodsController {
     @RequestMapping(value ="/updateGoods.action",produces = {"application/json;charset=utf-8"})
     @CrossOrigin
     @ResponseBody
-    public String updateGoods(Goods goods,@RequestParam(value = "gssid")Integer gssid){
+    public String updateGoods(Goods goods,@RequestParam(value = "gssid")Integer gssid,String mids){
         System.out.println(goods);
         System.out.println(gssid);
-       int num=goodsService.updateGoods(goods,gssid);
+        System.out.println(mids);
+        List<GoodsImage> goodsImageList=new ArrayList<>();
         String msg="";
-        if(num==1){
-            msg="修改成功";
+        if(mids!=""){
+            int num=goodsImageService.deleteGoodsImageBygid(goods.getGid());
+            System.out.println("num"+num);
+            String[] midss = mids.split(",");
+            for(String s:midss){
+                GoodsImage goodsImage1=new GoodsImage();
+                goodsImage1.setGid(goods.getGid());
+                goodsImage1.setGiurl(s);
+                goodsImageList.add(goodsImage1);
+            }
+            int numm=goodsImageService.addGoodsImageBygidgiurl(goodsImageList);
+            int nummm=goodsService.updateGoods(goods,gssid);
+            if(numm==midss.length){
+                msg="修改成功";
+            }else{
+                msg="修改失败";
+            }
         }else{
-            msg="修改失败";
+            int num=goodsService.updateGoods(goods,gssid);
+            if(num==1){
+                msg="修改成功";
+            }else{
+                msg="修改失败";
+            }
         }
-
         return  msg;
     }
     //删除

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -27,6 +28,20 @@ public class WarehouseController {
                                         @RequestParam(value = "size",defaultValue = "0") Integer size){
         PageVo<Warehouse> pageVo = warehouseService.queryAllWarehouse(warehouse,page,size);
         return pageVo;
+    }
+    //查询所有
+    @RequestMapping("/queryAllWarehouseall.action")
+    @CrossOrigin
+    @ResponseBody  //通知框架   返回的集合，vo，map  转成json格式  jackson.jar
+    public List<Warehouse> queryAllWarehouseall(Warehouse warehouse){
+        return warehouseService.queryAllWarehouseall(warehouse);
+    }
+    //查询所商品不在的仓库
+    @RequestMapping("/queryAllWarehouseNOInwid.action")
+    @CrossOrigin
+    @ResponseBody  //通知框架   返回的集合，vo，map  转成json格式  jackson.jar
+    public List<Warehouse> queryAllWarehouseNOInwid(int wid){
+        return warehouseService.queryAllWarehouseNOInwid(wid);
     }
     //添加22
     @RequestMapping(value ="/addWarehouse.action",produces = {"application/json;charset=utf-8"})

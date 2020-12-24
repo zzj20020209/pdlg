@@ -4,6 +4,8 @@ import com.zzj.vo.Goods;
 import com.zzj.vo.PageVo;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 public interface GoodsService {
     //条件查询所有
     public PageVo<Goods> queryAllGoods(Goods goods, int page, int rows) ;
@@ -23,5 +25,7 @@ public interface GoodsService {
     public Goods queryGoodsBygname(Goods goods);
     //根据供应ID查
     public Goods queryGoodsBysuid(int suid);
+    //所有
+    public List<Goods> queryAllGoodsall(Goods goods);
 
 }

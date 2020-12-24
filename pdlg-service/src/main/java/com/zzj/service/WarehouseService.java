@@ -3,6 +3,8 @@ package com.zzj.service;
 import com.zzj.vo.PageVo;
 import com.zzj.vo.Warehouse;
 
+import java.util.List;
+
 public interface WarehouseService {
     //查询所有
     public PageVo<Warehouse> queryAllWarehouse(Warehouse warehouse, int page, int rows) ;
@@ -18,4 +20,8 @@ public interface WarehouseService {
     public int deleteWarehouseduo(int[] ids);
     //根据供应ID查
     public Warehouse queryWarehouseBysuid(int suid);
+    //所有
+    public List<Warehouse> queryAllWarehouseall(Warehouse warehouse);
+    //查询商品不在的仓库
+    public List<Warehouse> queryAllWarehouseNOInwid(int wid);
 }

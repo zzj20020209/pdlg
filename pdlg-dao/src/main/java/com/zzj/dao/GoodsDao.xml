@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select * from goods
 		<where>
 			<if test="gname!=null  and gname!=''">and gname like concat('%',#{gname},'%') </if>
-			<if test="gstatus!=null and gstatus!='' ">and gstatus =#{gstatus} </if>
+			<if test="gstatus!=0 ">and gstatus =#{gstatus} </if>
 		</where>
 
 	</select>
@@ -29,7 +29,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) FROM goods
 		<where>
 			<if test="gname!=null and gname!='' ">and gname like concat('%',#{gname},'%') </if>
-			<if test="gstatus!=null and gstatus!=''">and gstatus =#{gstatus} </if>
+			<if test="gstatus!=0">and gstatus =#{gstatus} </if>
 		</where>
 	</select>
 
