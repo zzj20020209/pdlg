@@ -3,11 +3,16 @@ package com.zzj.service;
 import com.zzj.vo.Employee;
 import com.zzj.vo.PageVo;
 
+import java.util.List;
+import java.util.Map;
+
 
 public interface EmployeeService {
     public Employee dl(String username);
 
-    public PageVo<Employee> queryEmployeeCount(String employees, String sex, int page, int rows);
+    public PageVo<Employee> queryEmployeeCount(String employees, int page, int rows);
+
+    public List<Employee> queryEmployee();
 
     public Employee queryEmployeeById(int id);
 
@@ -18,4 +23,5 @@ public interface EmployeeService {
     public int uptEmployee(Employee employee);
 
     public int delEmployee(String ids);
+
 }

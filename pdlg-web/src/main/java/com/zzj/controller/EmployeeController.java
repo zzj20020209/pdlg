@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -24,7 +25,7 @@ public class EmployeeController {
     @PostMapping("/login.action")
     //@RequestMapping(value = "/login.action",method = RequestMethod.POST)
     public String login(Employee employee,
-                        @RequestParam(value = "rememberme",defaultValue = "false")boolean rememberme ,
+                        @RequestParam(value = "rememberme", defaultValue = "false") boolean rememberme,
                         HttpServletRequest request) {
 
         //组装token
@@ -54,10 +55,11 @@ public class EmployeeController {
             return "dl.jsp";
         }
     }
+
     @CrossOrigin
     @GetMapping("/logout.action")
     @ResponseBody
-    public String logout(){
+    public String logout() {
         SecurityUtils.getSubject().logout();
         return "login.jsp";
     }
@@ -65,10 +67,17 @@ public class EmployeeController {
     @RequestMapping("/queryEmployeeCount.action")
     @CrossOrigin
     @ResponseBody
-    public PageVo<Employee> queryEmployeeCount(String employees, String sex,
-                                               @RequestParam(value = "page",defaultValue = "1") int page,
-                                               @RequestParam(value = "rows",defaultValue = "5")int rows) {
-        return employeeService.queryEmployeeCount(employees,sex,page,rows);
+    public PageVo<Employee> queryEmployeeCount(String employees,
+                                               @RequestParam(value = "page", defaultValue = "1") int page,
+                                               @RequestParam(value = "rows", defaultValue = "5") int rows) {
+        return employeeService.queryEmployeeCount(employees, page, rows);
+    }
+
+    @RequestMapping("/queryEmployee.action")
+    @CrossOrigin
+    @ResponseBody
+    public List<Employee> queryEmployee() {
+        return employeeService.queryEmployee();
     }
 
     @RequestMapping("/queryEmployeeById.action")
@@ -83,10 +92,12 @@ public class EmployeeController {
     @ResponseBody
     public Map addEmployee(Employee employee) {
         Map map = new HashMap();
-        if(employeeService.queryExist(employee.getUsername())==0){
-            if(employeeService.addEmployee(employee)>0){
-                map.put("msg","添加成功");
+        if (employeeService.queryExist(employee.getUsername()) == 0) {
+            if (employeeService.addEmployee(employee) > 0) {
+                map.put("msg", "添加成功");
             }
+        } else {
+            map.put("msg", "该用户名已存在");
         }
         return map;
     }
@@ -96,10 +107,8 @@ public class EmployeeController {
     @ResponseBody
     public Map uptEmployee(Employee employee) {
         Map map = new HashMap();
-        if(employeeService.queryExist(employee.getUsername())==0){
-            if(employeeService.uptEmployee(employee)>0){
-                map.put("msg","修改成功");
-            }
+        if (employeeService.uptEmployee(employee) > 0) {
+            map.put("msg", "修改成功");
         }
         return map;
     }
@@ -109,9 +118,9 @@ public class EmployeeController {
     @ResponseBody
     public Map delEmployee(String ids) {
         Map map = new HashMap();
-        if(employeeService.delEmployee(ids)>0){
-            map.put("msg","删除成功");
+        if (employeeService.delEmployee(ids) > 0) {
+            map.put("msg", "删除成功");
         }
-        return  map;
+        return map;
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper
-PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zzj.dao.EmployeeDao">
     <select id="dl" parameterType="String" resultType="Employee">
         select * from employee where username=#{username}
@@ -10,25 +10,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="queryEmployeeAll" resultType="Employee">
         select * from employee
         <where>
-            <if test="employees!=null and employees!=''">
-                ename like concat('%',#{employees},'%') or age like concat('%',#{employees},'%') or idCard like concat('%',#{employees},'%')
-                or phone like concat('%',#{employees},'%')or address like concat('%',#{employees},'%')
-                or sex like concat('%',#{employees},'%') and
-            </if>
             state=1
+            <if test="employees!=null and employees!=''">
+                and ename like concat('%',#{employees},'%') or age like concat('%',#{employees},'%') or idCard like
+                concat('%',#{employees},'%')
+                or phone like concat('%',#{employees},'%') or address like concat('%',#{employees},'%') or sex like
+                concat('%',#{employees},'%')
+            </if>
         </where>
     </select>
 
     <select id="queryEmployeeCount" resultType="int">
         select count(*) from employee
         <where>
-            <if test="employees!=null and employees!=''">
-                ename like concat('%',#{employees},'%') or age like concat('%',#{employees},'%') or idCard like concat('%',#{employees},'%')
-                or phone like concat('%',#{employees},'%') or address like concat('%',#{employees},'%')
-                or sex like concat('%',#{employees},'%') and
-            </if>
             state=1
+            <if test="employees!=null and employees!=''">
+                and ename like concat('%',#{employees},'%') or age like concat('%',#{employees},'%') or idCard like
+                concat('%',#{employees},'%')
+                or phone like concat('%',#{employees},'%') or address like concat('%',#{employees},'%') or sex like
+                concat('%',#{employees},'%')
+            </if>
         </where>
+    </select>
+
+    <select id="queryEmployee" resultType="Employee">
+        select * from employee
     </select>
 
     <select id="queryEmployeeById" parameterType="int" resultType="Employee">
@@ -46,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <update id="uptEmployee" parameterType="Employee">
         update employee set ename =#{ename},sex =#{sex}, age =#{age}, username =#{username},
-          password =#{password}, phone =#{phone}, idCard =#{idCard}, address =#{address}, where id=#{id};
+          password =#{password}, phone =#{phone}, idCard =#{idCard}, address =#{address} where id=#{id};
     </update>
 
     <update id="delEmployee" parameterType="int">

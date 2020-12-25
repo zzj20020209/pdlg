@@ -8,6 +8,9 @@ import com.zzj.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+
 @Service
 public class EmployeeServiceImp implements EmployeeService {
 
@@ -20,12 +23,17 @@ public class EmployeeServiceImp implements EmployeeService {
     }
 
     @Override
-    public PageVo<Employee> queryEmployeeCount(String employees, String sex,int page,int rows) {
+    public PageVo<Employee> queryEmployeeCount(String employees,int page,int rows) {
         PageVo<Employee> pageVo = new PageVo<>();
         PageHelper.startPage(page,rows);
-        pageVo.setRows(employeeDao.queryEmployeeAll(employees,sex));
-        pageVo.setTotal(employeeDao.queryEmployeeCount(employees,sex));
+        pageVo.setRows(employeeDao.queryEmployeeAll(employees));
+        pageVo.setTotal(employeeDao.queryEmployeeCount(employees));
         return pageVo;
+    }
+
+    @Override
+    public List<Employee> queryEmployee() {
+        return employeeDao.queryEmployee();
     }
 
     @Override

@@ -24,8 +24,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="gstatus!=0 ">and g.gstatus =#{gstatus} </if>
 			<if test="gsid!=null">
 				<if test="gsid.goodBigSort!=null">
-					<if test="gsid.goodBigSort.gbsname!=null  and gsid.goodBigSort.gbsname!=''">
-						and gbs.gbsname like concat('%',#{gsid.goodBigSort.gbsname},'%')
+					<if test="gsid.goodBigSort.gbsname!=null and gsid.goodBigSort.gbsname!=''">
+						and gbs.gbsname=#{gsid.goodBigSort.gbsname}
 					</if>
 				</if>
 			</if>
@@ -37,27 +37,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) FROM goods g INNER JOIN goodsort gs ON gs.gsid=g.gsid
 		INNER JOIN goodbigsort gbs ON gs.gbsid=gbs.gbsid
 		<where>
-			<if test="gname!=null  and gname!=''">and g.gname like concat('%',#{gname},'%') </if>
-			<if test="gstatus!=0 ">and g.gstatus =#{gstatus} </if>
+			<if test="gname!=null and gname!='' ">and g.gname like concat('%',#{gname},'%') </if>
+			<if test="gstatus!=0">and g.gstatus =#{gstatus} </if>
 			<if test="gsid!=null">
 				<if test="gsid.goodBigSort!=null">
-					<if test="gsid.goodBigSort.gbsname!=null  and gsid.goodBigSort.gbsname!=''">
-						and gbs.gbsname like concat('%',#{gsid.goodBigSort.gbsname},'%')
+					<if test="gsid.goodBigSort.gbsname!=null and gsid.goodBigSort.gbsname!=''">
+						and gbs.gbsname=#{gsid.goodBigSort.gbsname}
 					</if>
 				</if>
 			</if>
 		</where>
+		ORDER BY g.gid ASC
 	</select>
 
 
 	<insert id="addGoods" parameterType="goods" useGeneratedKeys="true" keyColumn="gid" keyProperty="gid">
 		INSERT INTO goods(gname,gunit,gprice,gimage,gsid,gstatus)
 		values (#{goods.gname},#{goods.gunit},#{goods.gprice}
-		,#{goods.gimage},#{gssid},default )
+		,#{goods.gimage},#{gssid},1)
 	</insert>
 
 	<delete id="deleteGoods" parameterType="int">
-		update goods set gstatus=1 where gid=#{gid}
+		update goods set gstatus=2 where gid=#{gid}
+
 
 	</delete>
 	<select id="queryGoodsBygid" parameterType="int" resultMap="goodsmapper">
@@ -83,7 +85,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</update>
 	<delete id="deleteGoodsduo" parameterType="int">
-		update goods set gstatus=1
+		update goods set gstatus=2
 		<foreach collection="array" item="gid" open="where gid in(" separator="," close=");">
 			#{gid}
 		</foreach>

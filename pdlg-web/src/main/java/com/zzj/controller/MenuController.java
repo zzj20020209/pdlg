@@ -22,14 +22,14 @@ public class MenuController {
     @RequestMapping("/menuLogin.action")
     @CrossOrigin
     @ResponseBody
-    public Map menuLogin(String username, String password, HttpSession session) {
+    public Map menuLogin(String username, String password) {
         Map map = new HashMap();
         Employee employee = menuService.menuLogin(username,password);
         if(employee!=null){
-            session.setAttribute("employee",employee);
             map.put("code","0");
             map.put("msg","登录成功");
-            map.put("username",employee.getUsername());
+            map.put("id",employee.getId());
+            map.put("username",employee.getEname());
             return map;
         }
         map.put("code","1");
@@ -40,9 +40,14 @@ public class MenuController {
     @RequestMapping("/queryMenuAll.action")
     @CrossOrigin
     @ResponseBody
-    public List<MenuInfo> queryMenuAll(HttpSession session) {
-        Employee employee = (Employee) session.getAttribute("employee");
-        System.out.println(employee);
-        return menuService.queryMenuAll(1);
+    public List<MenuInfo> queryMenuAll(int id) {
+        return menuService.queryMenuAll(id);
+    }
+
+    @RequestMapping("/queryMenuAlls.action")
+    @CrossOrigin
+    @ResponseBody
+    public List<MenuInfo> queryMenuAlls() {
+        return menuService.queryMenuAlls();
     }
 }
