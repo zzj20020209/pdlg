@@ -1,7 +1,7 @@
 package com.zzj.vo;
 
 public class User {
-    private Integer uid;
+    private Integer id;
     private String image;
     private String username;
     private String password;
@@ -11,12 +11,12 @@ public class User {
     private String address;
     private Float price;
 
-    public Integer getUid() {
-        return uid;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getImage() {

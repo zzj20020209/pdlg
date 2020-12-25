@@ -35,6 +35,7 @@ public class UserController {
             msg.put("yhname",userLogin.getName());
             msg.put("username",userLogin.getUsername());
             msg.put("mm",userLogin.getPassword());
+            msg.put("id",userLogin.getId());
             msg.put("mag","登录成功");
             msg.put("code","0");
         }else {
@@ -65,14 +66,8 @@ public class UserController {
     @RequestMapping("/updateUser.action")
     @ResponseBody
     @CrossOrigin
-    public Map<String,Object> updateUser(User user, @RequestParam("image") MultipartFile image){
+    public Map<String,Object> updateUser(User user){
         Map<String,Object> msg = new HashMap<String,Object>();
-        user.setImage("./src/assets/image"+image.getOriginalFilename());
-        try {
-            image.transferTo(new File("..\\pdlg\\src\\assets\\"+image.getOriginalFilename()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         int rows =  userService.updateUser(user);
        if (rows==1){
            msg.put("flag",true);
