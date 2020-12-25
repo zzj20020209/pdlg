@@ -14,10 +14,28 @@ public class Goods implements Serializable {
     private String gimage;
     private GoodSort gsid;
     private  int gstatus;
+    private  int num;
+    private String ids;
     //图片集合
     private List<GoodsImage> goodsImagelist;
 
     public Goods() {
+    }
+
+    public String getIds() {
+        return ids;
+    }
+
+    public void setIds(String ids) {
+        this.ids = ids;
+    }
+
+    public int getNum() {
+        return 1;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public List<GoodsImage> getGoodsImagelist() {
