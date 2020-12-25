@@ -9,6 +9,7 @@ import java.util.List;
 public interface GoodSmallsortService {
     //条件查询所有
     public PageVo<GoodSmallsort> queryAllGoodSmallsort(GoodSmallsort goodSmallsort, int page, int rows) ;
+    public List<GoodSmallsort> queryAllGoodSmallsortall(GoodSmallsort goodSmallsort);
     //添加分类
     public int addGoodSmallsort(GoodSmallsort goodSmallsort);
     //通过ID查分类

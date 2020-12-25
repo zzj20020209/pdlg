@@ -19,6 +19,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	SELECT s.* FROM supply s INNER JOIN warehouse w  ON s.`wid`=w.`wid`
 	WHERE w.wid=#{wid}
     </select>
+	<update id="deleteSupplyBysuidcount" parameterType="int">
 
+		 UPDATE supply SET suinventory=suinventory-#{count} WHERE suid=#{suid}
 
+	</update>
+	<select id="querySupplyBywidgid" parameterType="int" resultMap="supplymapper">
+		 SELECT s.* FROM supply s INNER JOIN warehouse w  ON s.`wid`=w.`wid`
+		 INNER JOIN  goods g ON s.`sid`=g.gid WHERE w.wid=#{wid} AND g.gid=#{gid}
+    </select>
+	<insert id="addSupply" parameterType="supply" useGeneratedKeys="true" keyColumn="suid" keyProperty="suid">
+		INSERT INTO supply(wid,sid,suinventory,sustatus)
+		values (#{wid},#{gid}
+		,#{supply.suinventory},default )
+	</insert>
+	<update id="updateSupplykucunjian" >
+		UPDATE supply SET suinventory=suinventory-#{supply.suinventory} WHERE wid=#{wid} AND sid=#{gid}
+	</update>
+	<update id="updateSupplykucunzeng" >
+		UPDATE supply SET suinventory=suinventory+#{supply.suinventory} WHERE wid=#{wid} AND sid=#{gid}
+	</update>
 </mapper>

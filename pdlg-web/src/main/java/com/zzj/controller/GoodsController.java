@@ -42,6 +42,14 @@ public class GoodsController {
     public List<Goods> queryAllGoodsall(Goods goods){
         return goodsService.queryAllGoodsall(goods);
     }
+    //根据仓库id查
+    //查询所有
+    @RequestMapping("/queryAllGoodsBywid.action")
+    @CrossOrigin
+    @ResponseBody  //通知框架   返回的集合，vo，map  转成json格式  jackson.jar
+    public List<Goods> queryAllGoodsBywid(int wid){
+        return goodsService.queryAllGoodsBywid(wid);
+    }
 
 
     //添加22

@@ -31,6 +31,11 @@ public class GoodSmallsortServiceImpl implements GoodSmallsortService {
     }
 
     @Override
+    public List<GoodSmallsort> queryAllGoodSmallsortall(GoodSmallsort goodSmallsort) {
+        return goodSmallsortDao.queryAllGoodSmallsort(goodSmallsort);
+    }
+
+    @Override
     public int addGoodSmallsort(GoodSmallsort goodSmallsort) {
         return goodSmallsortDao.addGoodSmallsort(goodSmallsort);
     }

@@ -68,4 +68,14 @@ public class WarehouseServiceImpl implements WarehouseService {
     public List<Warehouse> queryAllWarehouseNOInwid(int wid) {
         return warehouseDao.queryAllWarehouseNOInwid(wid);
     }
+
+    @Override
+    public int updateWarehousekucunzeng(int wid, int count) {
+        return warehouseDao.updateWarehousekucunzeng(wid,count);
+    }
+
+    @Override
+    public int updateWarehousekucunjian(int wid, int count) {
+        return warehouseDao.updateWarehousekucunjian(wid,count);
+    }
 }

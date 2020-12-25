@@ -29,6 +29,15 @@ public class GoodSmallsortController {
         PageVo<GoodSmallsort> pageVo = goodSmallsortService.queryAllGoodSmallsort(goodSmallsort,page,size);
         return pageVo;
     }
+    //所有大分类
+    @RequestMapping("/queryAllGoodSmallsortall.action")
+    @CrossOrigin
+    @ResponseBody
+    public List<GoodSmallsort> queryAllGoodSmallsortall(GoodSmallsort goodSmallsort)
+    {
+
+        return goodSmallsortService.queryAllGoodSmallsortall(goodSmallsort);
+    }
 
     //添加
     @RequestMapping(value ="/addGoodSmallsort.actio-n",produces = {"application/json;charset=utf-8"})
@@ -111,6 +120,14 @@ public class GoodSmallsortController {
     public GoodSmallsort queryGoodSmallsortBygsid(int gsid)
     {
         return goodSmallsortService.queryGoodSmallsortBygsid(gsid);
+    }
+    //通过分类ID查小分类
+    @RequestMapping("/queryGoodSmallsortBygbsid.action")
+    @CrossOrigin
+    @ResponseBody
+    public List<GoodSmallsort> queryGoodSmallsortBygbsid(int gbsid)
+    {
+        return goodSmallsortService.queryGoodSmallsortBygbsid(gbsid);
     }
 
 }
