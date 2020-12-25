@@ -3,6 +3,8 @@ package com.zzj.service.impl;
 import com.github.pagehelper.PageHelper;
 import com.zzj.dao.RoleDao;
 import com.zzj.service.RoleService;
+import com.zzj.vo.Employee;
+import com.zzj.vo.MenuInfo;
 import com.zzj.vo.PageVo;
 import com.zzj.vo.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,14 +20,29 @@ public class RoleServiceImpl implements RoleService {
     public PageVo<Role> queryRoleCount(String rolename,int page,int rows) {
         PageVo<Role> pageVo = new PageVo<>();
         PageHelper.startPage(page,rows);
-        pageVo.setTotal(roleDao.queryRoleCount(rolename));
         pageVo.setRows(roleDao.queryRoleAll(rolename));
+        pageVo.setTotal(roleDao.queryRoleCount(rolename));
         return pageVo;
     }
 
     @Override
     public int queryRoleExist(String rolename,int rid) {
         return roleDao.queryRoleExist(rolename,rid);
+    }
+
+    @Override
+    public List<Role> queryRole() {
+        return roleDao.queryRole();
+    }
+
+    @Override
+    public List<MenuInfo> queryRoleQuan(int rid) {
+        List<MenuInfo> meuns = roleDao.queryRoleQuan(rid,0);
+        for (MenuInfo menu: meuns) {
+            List<MenuInfo> childmenus =roleDao.queryRoleQuan(rid,menu.getId());
+            menu.setChildren(childmenus);
+        }
+        return meuns;
     }
 
     @Override
@@ -51,5 +68,10 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public int delRole(int id) {
         return roleDao.delRole(id);
+    }
+
+    @Override
+    public List<Role> queryQuan(int id) {
+        return roleDao.queryQuan(id);
     }
 }

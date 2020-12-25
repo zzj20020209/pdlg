@@ -32,7 +32,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 	<select id="queryMenuAll" parameterType="int" resultMap="menumap">
-		SELECT m.* FROM  rolelink r LEFT JOIN employee e ON r.eid=e.id LEFT JOIN role l ON r.rid=l.rid LEFT JOIN `jurisdiction` j ON j.rid=r.rid
-		LEFT JOIN menu m ON j.mid=m.id WHERE e.id=#{id} and m.parentid=#{parentId}
+		SELECT  DISTINCT m.* FROM  rolelink r LEFT JOIN employee e ON r.eid=e.id LEFT JOIN role l ON r.rid=l.rid LEFT JOIN `jurisdiction` j ON j.rid=r.rid
+		LEFT JOIN menu m ON j.mid=m.id WHERE e.id=#{id} and m.parentid=#{parentId} ORDER BY m.id ASC
+	</select>
+
+	<select id="queryMenuAlls" parameterType="int" resultMap="menumap">
+		SELECT * FROM menu WHERE parentid=#{parentId}
 	</select>
 </mapper>

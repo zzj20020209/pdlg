@@ -2,6 +2,7 @@ package com.zzj.controller;
 
 import com.zzj.dao.RoleDao;
 import com.zzj.service.RoleService;
+import com.zzj.vo.MenuInfo;
 import com.zzj.vo.PageVo;
 import com.zzj.vo.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -26,6 +28,20 @@ public class RoleController {
                                        @RequestParam(value = "page", defaultValue = "1") int page,
                                        @RequestParam(value = "rows", defaultValue = "5") int rows) {
         return roleService.queryRoleCount(rolename, page, rows);
+    }
+
+    @RequestMapping("/queryRole.action")
+    @CrossOrigin
+    @ResponseBody
+    public List<Role> queryRole() {
+        return roleService.queryRole();
+    }
+
+    @RequestMapping("/queryRoleQuan.action")
+    @CrossOrigin
+    @ResponseBody
+    public List<MenuInfo> queryRoleQuan(int rid) {
+        return roleService.queryRoleQuan(rid);
     }
 
     @RequestMapping("/queryRoleById.action")
@@ -78,5 +94,12 @@ public class RoleController {
             map.put("msg", "该角色有人在使用，请先将该员工移至其他角色");
         }
         return map;
+    }
+
+    @RequestMapping("/queryQuan.action")
+    @CrossOrigin
+    @ResponseBody
+    public List<Role> queryQuan(int id){
+        return roleService.queryQuan(id);
     }
 }

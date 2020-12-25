@@ -11,5 +11,8 @@ public interface MenuDao {
 
     public Employee menuLogin(@Param(value = "username") String username, @Param(value = "password") String password);
 
+    public List<MenuInfo> queryMenuAlls(int parentid);
+
     public List<MenuInfo> queryMenuAll(@Param(value = "id") int id, @Param(value = "parentId") int parentId);
+
 }

@@ -22,11 +22,21 @@ public class MenuServiceImp implements MenuService {
     }
 
     @Override
+    public List<MenuInfo> queryMenuAlls() {
+        List<MenuInfo> meuns = menuDao.queryMenuAlls(0);
+        for (MenuInfo menu: meuns) {
+            List<MenuInfo> childmenus =menuDao.queryMenuAlls(menu.getId());
+            menu.setChildren(childmenus);
+        }
+        return meuns;
+    }
+
+    @Override
     public List<MenuInfo> queryMenuAll(int id) {
         List<MenuInfo> meuns = menuDao.queryMenuAll(id,0);
         for (MenuInfo menu: meuns) {
             List<MenuInfo> childmenus =menuDao.queryMenuAll(id,menu.getId());
-            menu.setChildMenu(childmenus);
+            menu.setChildren(childmenus);
         }
         return meuns;
     }

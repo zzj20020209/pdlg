@@ -10,5 +10,7 @@ public interface MenuService {
 
     public Employee menuLogin(String username, String password);
 
+    public List<MenuInfo> queryMenuAlls();
+
     public List<MenuInfo> queryMenuAll(int id);
 }

@@ -17,31 +17,49 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</resultMap>
 	<select id="queryAllGoods" parameterType="goods" resultMap="goodsmapper">
 
-		select * from goods
+		SELECT g.* FROM goods g INNER JOIN goodsort gs ON gs.gsid=g.gsid
+		INNER JOIN goodbigsort gbs ON gs.gbsid=gbs.gbsid
 		<where>
-			<if test="gname!=null  and gname!=''">and gname like concat('%',#{gname},'%') </if>
-			<if test="gstatus!=0 ">and gstatus =#{gstatus} </if>
+			<if test="gname!=null  and gname!=''">and g.gname like concat('%',#{gname},'%') </if>
+			<if test="gstatus!=0 ">and g.gstatus =#{gstatus} </if>
+			<if test="gsid!=null">
+				<if test="gsid.goodBigSort!=null">
+					<if test="gsid.goodBigSort.gbsname!=null and gsid.goodBigSort.gbsname!=''">
+						and gbs.gbsname=#{gsid.goodBigSort.gbsname}
+					</if>
+				</if>
+			</if>
 		</where>
 
 	</select>
 
 	<select id="querycountGoods" parameterType="goods" resultType="int">
-		select count(*) FROM goods
+		select count(*) FROM goods g INNER JOIN goodsort gs ON gs.gsid=g.gsid
+		INNER JOIN goodbigsort gbs ON gs.gbsid=gbs.gbsid
 		<where>
-			<if test="gname!=null and gname!='' ">and gname like concat('%',#{gname},'%') </if>
-			<if test="gstatus!=0">and gstatus =#{gstatus} </if>
+			<if test="gname!=null and gname!='' ">and g.gname like concat('%',#{gname},'%') </if>
+			<if test="gstatus!=0">and g.gstatus =#{gstatus} </if>
+			<if test="gsid!=null">
+				<if test="gsid.goodBigSort!=null">
+					<if test="gsid.goodBigSort.gbsname!=null and gsid.goodBigSort.gbsname!=''">
+						and gbs.gbsname=#{gsid.goodBigSort.gbsname}
+					</if>
+				</if>
+			</if>
 		</where>
+		ORDER BY g.gid ASC
 	</select>
 
 
 	<insert id="addGoods" parameterType="goods" useGeneratedKeys="true" keyColumn="gid" keyProperty="gid">
 		INSERT INTO goods(gname,gunit,gprice,gimage,gsid,gstatus,gisshangjia,gshangjiaprice)
 		values (#{goods.gname},#{goods.gunit},#{goods.gprice}
-		,#{goods.gimage},#{gssid},default,default,#{goods.gshangjiaprice})
+		,#{goods.gimage},#{gssid},,default,default,#{goods.gshangjiaprice})
 	</insert>
 
 	<delete id="deleteGoods" parameterType="int">
 		update goods set gstatus=2 where gid=#{gid}
+
 
 	</delete>
 	<update id="goodsshangjia" parameterType="int">

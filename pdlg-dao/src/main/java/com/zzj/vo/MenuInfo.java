@@ -11,7 +11,7 @@ public class MenuInfo {
     /**
      * 名称
      */
-    private String lable;
+    private String label;
 
     /**
      * 菜单编码
@@ -46,7 +46,7 @@ public class MenuInfo {
     /**
      * 子菜单集合
      */
-    List<MenuInfo> childMenu;
+    List<MenuInfo> children;
 
     //权限数据回显 点击选中一个角色  如果该角色拥有此菜单
     //操作权限，checked 为true
@@ -55,16 +55,16 @@ public class MenuInfo {
     public MenuInfo() {
     }
 
-    public MenuInfo(int id, String lable, String menuCode, int parentId, Integer nodeType, String iconUrl, String linkUrl, Integer level, List<MenuInfo> childMenu, boolean checked) {
+    public MenuInfo(int id, String label, String menuCode, int parentId, Integer nodeType, String iconUrl, String linkUrl, Integer level, List<MenuInfo> children, boolean checked) {
         this.id = id;
-        this.lable = lable;
+        this.label= label;
         this.menuCode = menuCode;
         this.parentId = parentId;
         this.nodeType = nodeType;
         this.iconUrl = iconUrl;
         this.linkUrl = linkUrl;
         this.level = level;
-        this.childMenu = childMenu;
+        this.children = children;
         this.checked = checked;
     }
 
@@ -76,12 +76,12 @@ public class MenuInfo {
         this.id = id;
     }
 
-    public String getLable() {
-        return lable;
+    public String getLabel() {
+        return label;
     }
 
-    public void setLable(String lable) {
-        this.lable = lable;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public String getMenuCode() {
@@ -132,12 +132,12 @@ public class MenuInfo {
         this.level = level;
     }
 
-    public List<MenuInfo> getChildMenu() {
-        return childMenu;
+    public List<MenuInfo> getChildren() {
+        return children;
     }
 
-    public void setChildMenu(List<MenuInfo> childMenu) {
-        this.childMenu = childMenu;
+    public void setChildren(List<MenuInfo> children) {
+        this.children = children;
     }
 
     public boolean isChecked() {

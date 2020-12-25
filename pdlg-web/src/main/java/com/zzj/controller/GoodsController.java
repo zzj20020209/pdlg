@@ -2,10 +2,7 @@ package com.zzj.controller;
 
 import com.zzj.service.GoodsImageService;
 import com.zzj.service.GoodsService;
-import com.zzj.vo.GoodBigSort;
-import com.zzj.vo.Goods;
-import com.zzj.vo.GoodsImage;
-import com.zzj.vo.PageVo;
+import com.zzj.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,11 +25,17 @@ public class GoodsController {
     @RequestMapping("/queryGoods.action")
     @CrossOrigin
     @ResponseBody  //通知框架   返回的集合，vo，map  转成json格式  jackson.jar
-    public PageVo<Goods> queryGoods(Goods goods,
+    public PageVo<Goods> queryGoods(Goods goods,String gbsname,
                                     @RequestParam(value = "page",defaultValue = "0")Integer page,
                                     @RequestParam(value = "size",defaultValue = "0") Integer size){
+      GoodBigSort goodBigSort=new GoodBigSort();
+      goodBigSort.setGbsname(gbsname);
+        GoodSort goodSort=new GoodSort();
+        goodSort.setGoodBigSort(goodBigSort);
+        goods.setGsid(goodSort);
         PageVo<Goods> pageVo = goodsService.queryAllGoods(goods,page,size);
-        System.out.println("page"+goods);
+
+        System.out.println("page"+goods.getGsid().getGoodBigSort().getGbsname());
         return pageVo;
     }
     //查询所有
