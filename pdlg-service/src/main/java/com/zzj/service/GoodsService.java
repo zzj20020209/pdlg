@@ -29,5 +29,9 @@ public interface GoodsService {
     public List<Goods> queryAllGoodsall(Goods goods);
     //根据仓库ID查
     public List<Goods> queryAllGoodsBywid(int  wid);
+    //上架
+    public int goodsshangjia(int gid);
+    //下架
+    public int goodsxiajia(int gid);
 
 }

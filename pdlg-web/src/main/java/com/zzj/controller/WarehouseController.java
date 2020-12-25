@@ -197,7 +197,6 @@ public class WarehouseController {
                  // 存在就修改现仓库库存    修改仓库商品关联表库存    修改选择仓库库存
                  Supply supply=supplyService.querySupplyBywidgid(cangstridss[i],gidstridss[i]);
                  if(supply!=null){
-                     System.out.println("存在啊"+supply);
                     Supply supply1=new Supply();
                      supply1.setSuinventory(countstridss[i]);
                      int num1=supplyService.updateSupplykucunjian(supply1,wid,gidstridss[i]);
@@ -207,7 +206,7 @@ public class WarehouseController {
                      Goods goods=goodsService.queryGoodsBygid(gidstridss[i]);
                      str=str+goods.getGname()+"转移到"+warehouse.getWname()+"成功!"+" ";
                  }else{
-                     System.out.println("不存在啊");
+                     // 不存在就添加新的数据    修改现仓库数据和     修改选择仓库库存
                     Supply supplyadd=new Supply();
                      supplyadd.setSuinventory(countstridss[i]);
                      int num1=supplyService.updateSupplykucunjian(supplyadd,wid,gidstridss[i]);
@@ -216,14 +215,6 @@ public class WarehouseController {
                      int num4=warehouseService.updateWarehousekucunjian(cangstridss[i],countstridss[i]);
                      Goods goods=goodsService.queryGoodsBygid(gidstridss[i]);
                      str=str+goods.getGname()+"转移到"+warehouse.getWname()+"成功!"+" ";
-                     // 不存在就添加新的数据    修改现仓库数据和     修改选择仓库库存
-                    /* Supply supplyadd=new Supply();
-                     supplyadd.setSuinventory(countstridss[i]);
-                     int num1=supplyService.addSupply(supplyadd,cangstridss[i],gidstridss[i]);
-                     int num2=warehouseService.updateWarehousekucunzeng(wid,countstridss[i]);
-                     int num3=warehouseService.updateWarehousekucunjian(cangstridss[i],countstridss[i]);
-                     Goods goods=goodsService.queryGoodsBygid(gidstridss[i]);
-                     str=str+goods.getGname()+"转移到"+warehouse.getWname()+"成功!"+" ";*/
                  }
              }else{
                Goods goodsf=goodsService.queryGoodsBygid(gidstridss[i]);

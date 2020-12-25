@@ -35,15 +35,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<insert id="addGoods" parameterType="goods" useGeneratedKeys="true" keyColumn="gid" keyProperty="gid">
-		INSERT INTO goods(gname,gunit,gprice,gimage,gsid,gstatus)
+		INSERT INTO goods(gname,gunit,gprice,gimage,gsid,gstatus,gisshangjia,gshangjiaprice)
 		values (#{goods.gname},#{goods.gunit},#{goods.gprice}
-		,#{goods.gimage},#{gssid},default )
+		,#{goods.gimage},#{gssid},default,default,#{goods.gshangjiaprice})
 	</insert>
 
 	<delete id="deleteGoods" parameterType="int">
 		update goods set gstatus=2 where gid=#{gid}
 
 	</delete>
+	<update id="goodsshangjia" parameterType="int">
+		update goods set gisshangjia=1 where gid=#{gid}
+
+	</update>
+	<update id="goodsxiajia" parameterType="int">
+		update goods set gisshangjia=2 where gid=#{gid}
+
+	</update>
 	<select id="queryGoodsBygid" parameterType="int" resultMap="goodsmapper">
         select * from goods where gid=#{gid}
     </select>

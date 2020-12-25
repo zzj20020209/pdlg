@@ -108,9 +108,6 @@ public class GoodsController {
     @CrossOrigin
     @ResponseBody
     public String updateGoods(Goods goods,@RequestParam(value = "gssid")Integer gssid,String mids){
-        System.out.println(goods);
-        System.out.println(gssid);
-        System.out.println(mids);
         List<GoodsImage> goodsImageList=new ArrayList<>();
         String msg="";
         if(mids!=""){
@@ -142,6 +139,7 @@ public class GoodsController {
     }
     //删除
     @RequestMapping(value ="/deleteGoods.action",produces = {"application/json;charset=utf-8"})
+    @CrossOrigin
     @ResponseBody
     public String deleteGoods(int gid){
 
@@ -157,6 +155,7 @@ public class GoodsController {
     }
     //批量删除
     @RequestMapping("/deletezhanghao.action")
+    @CrossOrigin
     @ResponseBody
     public Map deleteemp(String ids){
         System.out.println(ids);
@@ -178,5 +177,35 @@ public class GoodsController {
             map.put("code","0");
         }
         return  map;
+    }
+    //上架
+    @RequestMapping(value ="/goodsshangjia.action",produces = {"application/json;charset=utf-8"})
+    @CrossOrigin
+    @ResponseBody
+    public String goodsshangjia(int gid){
+
+        int num=goodsService.goodsshangjia(gid);
+        String msg="";
+        if(num==1){
+            msg="上架成功";
+        }else{
+            msg="上架失败";
+        }
+        return  msg;
+    }
+    //下架
+    @RequestMapping(value ="/goodsxiajia.action",produces = {"application/json;charset=utf-8"})
+    @CrossOrigin
+    @ResponseBody
+    public String goodsxiajia(int gid){
+
+        int num=goodsService.goodsxiajia(gid);
+        String msg="";
+        if(num==1){
+            msg="下架成功";
+        }else{
+            msg="下架失败";
+        }
+        return  msg;
     }
 }

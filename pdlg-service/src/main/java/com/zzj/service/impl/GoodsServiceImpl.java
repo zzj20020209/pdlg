@@ -75,4 +75,14 @@ public class GoodsServiceImpl implements GoodsService {
     public List<Goods> queryAllGoodsBywid(int wid) {
         return goodsDao.queryAllGoodsBywid(wid);
     }
+
+    @Override
+    public int goodsshangjia(int gid) {
+        return goodsDao.goodsshangjia(gid);
+    }
+
+    @Override
+    public int goodsxiajia(int gid) {
+        return goodsDao.goodsxiajia(gid);
+    }
 }

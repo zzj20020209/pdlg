@@ -14,6 +14,8 @@ public class Goods implements Serializable {
     private String gimage;
     private GoodSort gsid;
     private  int gstatus;
+    private int gisshangjia;
+    private double gshangjiaprice;
     //图片集合
     private List<GoodsImage> goodsImagelist;
 
@@ -28,18 +30,6 @@ public class Goods implements Serializable {
         this.goodsImagelist = goodsImagelist;
     }
 
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "gid=" + gid +
-                ", gname='" + gname + '\'' +
-                ", gunit='" + gunit + '\'' +
-                ", gprice=" + gprice +
-                ", gimage='" + gimage + '\'' +
-                ", gsid=" + gsid +
-                ", gstatus=" + gstatus +
-                '}';
-    }
 
     public int getGid() {
         return gid;
@@ -97,7 +87,26 @@ public class Goods implements Serializable {
         this.gstatus = gstatus;
     }
 
-    public Goods(int gid, String gname, String gunit, double gprice, String gimage, GoodSort gsid, int gstatus) {
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "gid=" + gid +
+                ", gname='" + gname + '\'' +
+                ", gunit='" + gunit + '\'' +
+                ", gprice=" + gprice +
+                ", gimage='" + gimage + '\'' +
+                ", gsid=" + gsid +
+                ", gstatus=" + gstatus +
+                ", gisshangjia=" + gisshangjia +
+                ", gshangjiaprice=" + gshangjiaprice +
+                '}';
+    }
+
+    public int getGisshangjia() {
+        return gisshangjia;
+    }
+
+    public Goods(int gid, String gname, String gunit, double gprice, String gimage, GoodSort gsid, int gstatus, int gisshangjia, double gshangjiaprice) {
         this.gid = gid;
         this.gname = gname;
         this.gunit = gunit;
@@ -105,5 +114,19 @@ public class Goods implements Serializable {
         this.gimage = gimage;
         this.gsid = gsid;
         this.gstatus = gstatus;
+        this.gisshangjia = gisshangjia;
+        this.gshangjiaprice = gshangjiaprice;
+    }
+
+    public void setGisshangjia(int gisshangjia) {
+        this.gisshangjia = gisshangjia;
+    }
+
+    public double getGshangjiaprice() {
+        return gshangjiaprice;
+    }
+
+    public void setGshangjiaprice(double gshangjiaprice) {
+        this.gshangjiaprice = gshangjiaprice;
     }
 }
