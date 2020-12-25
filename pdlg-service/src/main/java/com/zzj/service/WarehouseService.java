@@ -2,6 +2,7 @@ package com.zzj.service;
 
 import com.zzj.vo.PageVo;
 import com.zzj.vo.Warehouse;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -24,4 +25,8 @@ public interface WarehouseService {
     public List<Warehouse> queryAllWarehouseall(Warehouse warehouse);
     //查询商品不在的仓库
     public List<Warehouse> queryAllWarehouseNOInwid(int wid);
+    //库存增加
+    public int updateWarehousekucunzeng(@Param("wid") int wid, @Param("count")int count);
+    //库存减少
+    public int updateWarehousekucunjian(@Param("wid") int wid, @Param("count")int count);
 }

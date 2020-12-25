@@ -3,6 +3,7 @@ package com.zzj.vo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.util.List;
 
 @JsonIgnoreProperties("handler")
 public class GoodBigSort implements Serializable {
@@ -10,8 +11,16 @@ public class GoodBigSort implements Serializable {
     private String gbsname;
     private String gbsicon;
     private int gbsstatus;
-
+    private List<Goods> goodsList;
     public GoodBigSort() {
+    }
+
+    public List<Goods> getGoodsList() {
+        return goodsList;
+    }
+
+    public void setGoodsList(List<Goods> goodsList) {
+        this.goodsList = goodsList;
     }
 
     @Override

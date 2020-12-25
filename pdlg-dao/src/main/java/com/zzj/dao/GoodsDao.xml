@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 
 	<delete id="deleteGoods" parameterType="int">
-		update goods set gstatus=1 where gid=#{gid}
+		update goods set gstatus=2 where gid=#{gid}
 
 	</delete>
 	<select id="queryGoodsBygid" parameterType="int" resultMap="goodsmapper">
@@ -67,10 +67,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</update>
 	<delete id="deleteGoodsduo" parameterType="int">
-		update goods set gstatus=1
+		update goods set gstatus=2
 		<foreach collection="array" item="gid" open="where gid in(" separator="," close=");">
 			#{gid}
 		</foreach>
 	</delete>
+	<select id="queryAllGoodsBywid" parameterType="int" resultMap="goodsmapper">
 
+		SELECT g.* FROM goods g INNER JOIN supply s ON s.`sid`=g.gid
+		INNER JOIN warehouse w ON s.`wid`=w.`wid` WHERE w.wid=#{wid}
+
+	</select>
 </mapper>

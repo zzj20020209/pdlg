@@ -27,5 +27,7 @@ public interface GoodsService {
     public Goods queryGoodsBysuid(int suid);
     //所有
     public List<Goods> queryAllGoodsall(Goods goods);
+    //根据仓库ID查
+    public List<Goods> queryAllGoodsBywid(int  wid);
 
 }

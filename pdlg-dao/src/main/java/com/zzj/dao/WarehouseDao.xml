@@ -67,5 +67,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		     SELECT * FROM warehouse WHERE wid !=#{wid}
 
 	</select>
+	<update id="updateWarehousekucunzeng" parameterType="int">
 
+		 UPDATE warehouse SET wskucun=wskucun+#{count}
+		 where wid=#{wid}
+
+	</update>
+	<update id="updateWarehousekucunjian" parameterType="int">
+
+		 UPDATE warehouse SET wskucun=wskucun-#{count}
+		 where wid=#{wid}
+
+	</update>
 </mapper>

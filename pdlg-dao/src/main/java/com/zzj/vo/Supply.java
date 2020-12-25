@@ -12,6 +12,26 @@ public class Supply implements Serializable {
     private int suinventory;
     private int sustatus;
 
+    //只共页面使用
+    private int xuancount;
+    private String jiacount;
+
+    public String getJiacount() {
+        return jiacount;
+    }
+
+    public void setJiacount(String jiacount) {
+        this.jiacount = jiacount;
+    }
+
+    public int getXuancount() {
+        return xuancount;
+    }
+
+    public void setXuancount(int xuancount) {
+        this.xuancount = xuancount;
+    }
+
     public int getSuid() {
         return suid;
     }

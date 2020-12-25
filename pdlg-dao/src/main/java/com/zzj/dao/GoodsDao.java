@@ -26,5 +26,7 @@ public interface GoodsDao {
     public int deleteGoodsduo(int[] ids);
     //根据供应ID查
     public Goods queryGoodsBysuid(int suid);
+    //根据仓库ID查
+    public List<Goods> queryAllGoodsBywid(int  wid);
 
 }

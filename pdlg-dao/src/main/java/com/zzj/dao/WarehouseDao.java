@@ -1,6 +1,7 @@
 package com.zzj.dao;
 
 import com.zzj.vo.Warehouse;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -23,4 +24,8 @@ public interface WarehouseDao {
     public Warehouse queryWarehouseBysuid(int suid);
     //查询商品不在的仓库
     public List<Warehouse> queryAllWarehouseNOInwid(int wid);
+    //库存增加
+    public int updateWarehousekucunzeng(@Param("wid") int wid, @Param("count")int count);
+    //库存减少
+    public int updateWarehousekucunjian(@Param("wid") int wid, @Param("count")int count);
 }

@@ -17,4 +17,29 @@ public class SupplyServiceImpl implements SupplyService {
     public List<Supply> querySupplyBywid(int wid) {
         return supplyDao.querySupplyBywid(wid);
     }
+
+    @Override
+    public int deleteSupplyBysuidcount(int suid, int count) {
+        return supplyDao.deleteSupplyBysuidcount(suid,count);
+    }
+
+    @Override
+    public Supply querySupplyBywidgid(int wid, int gid) {
+        return supplyDao.querySupplyBywidgid(wid,gid);
+    }
+
+    @Override
+    public int addSupply(Supply supply, int wid, int gid) {
+        return supplyDao.addSupply(supply,wid,gid);
+    }
+
+    @Override
+    public int updateSupplykucunjian(Supply supply, int wid, int gid) {
+        return supplyDao.updateSupplykucunjian(supply,wid,gid);
+    }
+
+    @Override
+    public int updateSupplykucunzeng(Supply supply, int wid, int gid) {
+        return supplyDao.updateSupplykucunzeng(supply,wid,gid);
+    }
 }
