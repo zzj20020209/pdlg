@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</delete>
 	<select id="queryWarehouseBywid" parameterType="int" resultMap="warehousemapper">
-        select * from warehouse where wid=#{wid}
+        select   * from warehouse where wid=#{wid}
     </select>
 	<select id="queryWarehouseBysuid" parameterType="int" resultMap="warehousemapper1">
         SELECT w.* FROM warehouse w INNER JOIN supply s ON s.`wid`=w.`wid`

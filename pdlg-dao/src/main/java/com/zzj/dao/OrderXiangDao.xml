@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.dao.OrderXiangDao">
+	<resultMap id="orderXiangmapper" type="com.zzj.vo.OrderXiang">
+		<id column="oxid" property="oxid"></id>
+		<association property="order" javaType="com.zzj.vo.Order"
+					 select="com.zzj.dao.OrderDao.queryAllOrderByoid" column="oid"
+					 fetchType="lazy">
+		</association>
+		<association property="shvo" javaType="com.zzj.vo.Shvo"
+					 select="com.zzj.dao.ShDao.shcxdg" column="sid"
+					 fetchType="lazy">
+		</association>
+		<association property="user" javaType="com.zzj.vo.User"
+					 select="com.zzj.dao.UserDao.queryUserById" column="uid"
+					 fetchType="lazy">
+		</association>
+		<association property="goods" javaType="com.zzj.vo.Goods"
+					 select="com.zzj.dao.GoodsDao.queryGoodsBygid" column="gid"
+					 fetchType="lazy">
+		</association>
+		<association property="warehouse" javaType="com.zzj.vo.Warehouse"
+					 select="com.zzj.dao.WarehouseDao.queryWarehouseBywid" column="wid"
+					 fetchType="lazy">
+		</association>
+	</resultMap>
+	<resultMap id="orderXiangmapper1" type="com.zzj.vo.OrderXiang">
+		<id column="oxid" property="oxid"></id>
+		<association property="shvo" javaType="com.zzj.vo.Shvo"
+					 select="com.zzj.dao.ShDao.shcxdg" column="sid"
+					 fetchType="lazy">
+		</association>
+		<association property="user" javaType="com.zzj.vo.User"
+					 select="com.zzj.dao.UserDao.queryUserById" column="uid"
+					 fetchType="lazy">
+		</association>
+		<association property="goods" javaType="com.zzj.vo.Goods"
+					 select="com.zzj.dao.GoodsDao.queryGoodsBygid" column="gid"
+					 fetchType="lazy">
+		</association>
+		<association property="warehouse" javaType="com.zzj.vo.Warehouse"
+					 select="com.zzj.dao.WarehouseDao.queryWarehouseBywid" column="wid"
+					 fetchType="lazy">
+		</association>
+	</resultMap>
+	<select id="queryAllOrderXiangByoid" parameterType="int" resultMap="orderXiangmapper1">
+
+			SELECT ox.* FROM orderxiang ox
+		INNER JOIN orderr o ON o.id=ox.oid WHERE o.id=#{oid}
+	</select>
+
+
+	<select id="queryAllOrderXiangUser" resultMap="orderXiangmapper">
+
+		SELECT ox.* FROM orderxiang ox
+		INNER JOIN orderr o ON o.id=ox.oid
+		INNER JOIN USER u ON u.id=ox.uid
+		<where>
+			u.id=#{uid}
+			<if test="zhuangtai!='' and zhuangtai!=null ">and o.oYogistics =#{zhuangtai} </if>
+		</where>
+
+	</select>
+	<select id="querycountOrderXiangUser"  resultType="int">
+		SELECT count(*) FROM orderxiang ox
+		INNER JOIN orderr o ON o.id=ox.oid
+		INNER JOIN USER u ON u.id=ox.uid
+		<where>
+			u.id=#{uid}
+			<if test="zhuangtai!='' and zhuangtai!=null ">and o.oYogistics =#{zhuangtai} </if>
+		</where>
+	</select>
+
+	<select id="queryAllOrderXiangShang" resultMap="orderXiangmapper">
+
+		SELECT ox.* FROM orderxiang ox
+		INNER JOIN orderr o ON o.id=ox.oid
+		INNER JOIN shanghu s ON ox.sid=s.sid
+		<where>
+			s.sid=#{sid}
+			<if test="zhuangtai!='' and zhuangtai!=null ">and o.oSLogistics =#{zhuangtai} </if>
+		</where>
+
+	</select>
+	<select id="querycountOrderXiangShang"  resultType="int">
+		SELECT count(*) FROM orderxiang ox
+		INNER JOIN orderr o ON o.id=ox.oid
+		INNER JOIN shanghu s ON ox.sid=s.sid
+		<where>
+			s.sid=#{sid}
+			<if test="zhuangtai!='' and zhuangtai!=null ">and o.oSLogistics =#{zhuangtai} </if>
+		</where>
+	</select>
+
+	<select id="queryAllOrderXiangZong" resultMap="orderXiangmapper">
+
+		SELECT ox.* FROM orderxiang ox
+		INNER JOIN orderr o ON o.id=ox.oid
+		<where>
+			<if test="zhuangtai!='' and zhuangtai!=null ">and o.oZLogistics =#{zhuangtai} </if>
+		</where>
+
+	</select>
+	<select id="querycountOrderXiangZong"  resultType="int">
+		select count(*) FROM orderxiang ox
+		INNER JOIN orderr o ON o.id=ox.oid
+		<where>
+			<if test="zhuangtai!='' and zhuangtai!=null ">and o.oZLogistics =#{zhuangtai} </if>
+		</where>
+	</select>
+</mapper>

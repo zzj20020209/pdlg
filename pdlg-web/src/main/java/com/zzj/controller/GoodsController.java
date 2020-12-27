@@ -35,7 +35,6 @@ public class GoodsController {
         goods.setGsid(goodSort);
         PageVo<Goods> pageVo = goodsService.queryAllGoods(goods,page,size);
 
-        System.out.println("page"+goods.getGsid().getGoodBigSort().getGbsname());
         return pageVo;
     }
     //查询所有

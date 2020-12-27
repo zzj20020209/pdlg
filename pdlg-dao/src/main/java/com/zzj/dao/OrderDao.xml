@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.dao.OrderDao">
+	<resultMap id="ordermapper" type="com.zzj.vo.Order">
+		<id column="id" property="id"></id>
+		<collection property="orderXiangList" javaType="list" ofType="com.zzj.vo.OrderXiang"
+					column="id" select="com.zzj.dao.OrderXiangDao.queryAllOrderXiangByoid"
+					fetchType="lazy">
+		</collection>
+
+	</resultMap>
+	<resultMap id="ordermapper1" type="com.zzj.vo.Order">
+		<id column="id" property="id"></id>
+	</resultMap>
+	<select id="queryAllOrderUser" resultMap="ordermapper">
+
+		SELECT  DISTINCT o.* FROM orderr o
+		INNER JOIN orderxiang ox ON o.id=ox.oid
+		INNER JOIN USER u ON u.id=ox.uid
+		<where>
+			  u.id=#{uid}
+			<if test="order.oYogistics!='' and order.oYogistics!=null ">and o.oYogistics =#{order.oYogistics} </if>
+		</where>
+
+	</select>
+	<select id="querycountOrderUser"  resultType="int">
+		SELECT COUNT(1) FROM (
+		select count(*) FROM  orderr o
+		INNER JOIN orderxiang ox ON o.id=ox.oid
+		INNER JOIN USER u ON u.id=ox.uid
+		<where>
+			u.id=#{uid}
+			<if test="order.oYogistics!='' and order.oYogistics!=null ">and o.oYogistics =#{order.oYogistics} </if>
+		</where>)t
+	</select>
+
+	<select id="queryAllOrderShang" resultMap="ordermapper">
+
+		SELECT DISTINCT o.* FROM orderr o
+		INNER JOIN orderxiang ox ON o.id=ox.oid
+		INNER JOIN shanghu s ON ox.sid=s.sid
+		<where>
+			s.sid=#{sid} and o.oZLogistics='已出库'
+			<if test="order.oSLogistics!='' and order.oSLogistics!=null ">and o.oSLogistics =#{order.oSLogistics} </if>
+		</where>
+
+	</select>
+	<select id="querycountOrderShang"  resultType="int">
+		SELECT COUNT(1) FROM (
+		select count(*) FROM  orderr o
+		INNER JOIN orderxiang ox ON o.id=ox.oid
+		INNER JOIN shanghu s ON ox.sid=s.sid
+		<where>
+			s.sid=#{sid} and o.oZLogistics='已出库'
+			<if test="order.oSLogistics!='' and order.oSLogistics!=null ">and o.oSLogistics =#{order.oSLogistics} </if>
+		</where>)t
+	</select>
+
+	<select id="queryAllOrderZong" resultMap="ordermapper">
+
+		SELECT DISTINCT o.* FROM orderr o
+		INNER JOIN orderxiang ox ON o.id=ox.oid
+		<where>
+				o.oYogistics='待配送'
+			<if test="order.oZLogistics!='' and order.oZLogistics!=null ">and o.oZLogistics =#{order.oZLogistics} </if>
+		</where>
+
+	</select>
+	<select id="querycountOrderZong"  resultType="int">
+		SELECT COUNT(1) FROM (
+		select count(*) FROM  orderr o
+		INNER JOIN orderxiang ox ON o.id=ox.oid
+		<where>
+			o.oYogistics='待配送'
+			<if test="order.oZLogistics!='' and order.oZLogistics!=null ">and o.oZLogistics =#{order.oZLogistics} </if>
+		</where>)t
+	</select>
+
+	<select id="queryAllOrderByoid" parameterType="int" resultMap="ordermapper1">
+
+		SELECT   * FROM orderr  where id=#{oid}
+
+	</select>
+
+</mapper>

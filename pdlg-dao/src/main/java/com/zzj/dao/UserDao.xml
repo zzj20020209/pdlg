@@ -27,7 +27,7 @@
         update user set state = 0 where id = #{id}
     </update>
     <select id="queryUserById" parameterType="int" resultType="user">
-        select * from user where id = #{id}
+        select   * from user where id = #{id}
     </select>
 
     <select id="queryAllUser" parameterType="user" resultType="user">

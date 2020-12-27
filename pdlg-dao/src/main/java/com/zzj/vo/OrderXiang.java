@@ -8,7 +8,7 @@ import java.io.Serializable;
 public class OrderXiang implements Serializable {
     private int oxid;
     private Order order;
-    private ShangHu shangHu;
+    private Shvo shvo;
     private User user;
     private Goods goods;
     private Warehouse warehouse;
@@ -18,19 +18,7 @@ public class OrderXiang implements Serializable {
     public OrderXiang() {
     }
 
-    @Override
-    public String toString() {
-        return "OrderXiang{" +
-                "oxid=" + oxid +
-                ", order=" + order +
-                ", shangHu=" + shangHu +
-                ", user=" + user +
-                ", goods=" + goods +
-                ", warehouse=" + warehouse +
-                ", oxprice=" + oxprice +
-                ", oxcount=" + oxcount +
-                '}';
-    }
+
 
     public int getOxid() {
         return oxid;
@@ -46,14 +34,6 @@ public class OrderXiang implements Serializable {
 
     public void setOrder(Order order) {
         this.order = order;
-    }
-
-    public ShangHu getShangHu() {
-        return shangHu;
-    }
-
-    public void setShangHu(ShangHu shangHu) {
-        this.shangHu = shangHu;
     }
 
     public User getUser() {
@@ -96,10 +76,32 @@ public class OrderXiang implements Serializable {
         this.oxcount = oxcount;
     }
 
-    public OrderXiang(int oxid, Order order, ShangHu shangHu, User user, Goods goods, Warehouse warehouse, double oxprice, int oxcount) {
+    @Override
+    public String toString() {
+        return "OrderXiang{" +
+                "oxid=" + oxid +
+                ", order=" + order +
+                ", shvo=" + shvo +
+                ", user=" + user +
+                ", goods=" + goods +
+                ", warehouse=" + warehouse +
+                ", oxprice=" + oxprice +
+                ", oxcount=" + oxcount +
+                '}';
+    }
+
+    public Shvo getShvo() {
+        return shvo;
+    }
+
+    public void setShvo(Shvo shvo) {
+        this.shvo = shvo;
+    }
+
+    public OrderXiang(int oxid, Order order, Shvo shvo, User user, Goods goods, Warehouse warehouse, double oxprice, int oxcount) {
         this.oxid = oxid;
         this.order = order;
-        this.shangHu = shangHu;
+        this.shvo = shvo;
         this.user = user;
         this.goods = goods;
         this.warehouse = warehouse;

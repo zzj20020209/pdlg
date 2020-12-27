@@ -71,7 +71,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</update>
 	<select id="queryGoodsBygid" parameterType="int" resultMap="goodsmapper">
-        select * from goods where gid=#{gid}
+        select  * from goods where gid=#{gid}
     </select>
 	<select id="queryGoodsBygname" parameterType="goods" resultMap="goodsmapper">
 		select * from goods where gname=#{gname}

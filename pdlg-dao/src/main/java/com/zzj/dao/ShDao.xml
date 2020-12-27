@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         update shanghu set state=0 where sid=#{sid}
     </update>
     <select id="shcxdg" parameterType="int" resultType="Shvo">
-        select * from shanghu where sid=#{sid}
+        select  * from shanghu where sid=#{sid}
     </select>
     <update id="shxg" parameterType="Shvo" >
         update shanghu set sname=#{sname},yhm=#{yhm},password=#{password},address=#{address},stele=#{stele} where sid=#{sid}

@@ -13,17 +13,44 @@ import org.springframework.stereotype.Service;
 public class OrderServiceImpl implements OrderService {
     @Autowired
     OrderDao orderDao;
-
     @Override
-    public PageVo<Order> queryAllOrder(Order order, int page, int rows) {
+    public PageVo<Order> queryAllOrderUser(Order order, int uid, int page, int rows) {
         PageVo<Order> pageVo = new PageVo<>();
 
         //在需要分页的代码调用前 执行以下代码a
         PageHelper.startPage(page, rows);
         //获取分页后 显示的数据集合
-        pageVo.setRows(orderDao.queryAllOrder(order));
+        pageVo.setRows(orderDao.queryAllOrderUser(order,uid));
         //获取总的记录数量
-        pageVo.setTotal(orderDao.querycountOrder(order));
+        pageVo.setTotal(orderDao.querycountOrderUser(order,uid));
+
+        return pageVo;
+    }
+
+    @Override
+    public PageVo<Order> queryAllOrderShang(Order order, int sid, int page, int rows) {
+        PageVo<Order> pageVo = new PageVo<>();
+
+        //在需要分页的代码调用前 执行以下代码a
+        PageHelper.startPage(page, rows);
+        //获取分页后 显示的数据集合
+        pageVo.setRows(orderDao.queryAllOrderShang(order,sid));
+        //获取总的记录数量
+        pageVo.setTotal(orderDao.querycountOrderShang(order,sid));
+
+        return pageVo;
+    }
+
+    @Override
+    public PageVo<Order> queryAllOrderZong(Order order, int page, int rows) {
+        PageVo<Order> pageVo = new PageVo<>();
+
+        //在需要分页的代码调用前 执行以下代码a
+        PageHelper.startPage(page, rows);
+        //获取分页后 显示的数据集合
+        pageVo.setRows(orderDao.queryAllOrderZong(order));
+        //获取总的记录数量
+        pageVo.setTotal(orderDao.querycountOrderZong(order));
 
         return pageVo;
     }
