@@ -113,6 +113,7 @@ public class GoodsController {
     public String updateGoods(Goods goods,@RequestParam(value = "gssid")Integer gssid,String mids){
         List<GoodsImage> goodsImageList=new ArrayList<>();
         String msg="";
+        System.out.println("mids"+mids);
         if(mids!=""){
             int num=goodsImageService.deleteGoodsImageBygid(goods.getGid());
             System.out.println("num"+num);
@@ -131,6 +132,7 @@ public class GoodsController {
                 msg="修改失败";
             }
         }else{
+            int numm=goodsImageService.deleteGoodsImageBygid(goods.getGid());
             int num=goodsService.updateGoods(goods,gssid);
             if(num==1){
                 msg="修改成功";
@@ -210,5 +212,12 @@ public class GoodsController {
             msg="下架失败";
         }
         return  msg;
+    }
+    //通过大小分类查
+    @RequestMapping("/queryAllGoodsBybigsmaid.action")
+    @CrossOrigin
+    @ResponseBody  //通知框架   返回的集合，vo，map  转成json格式  jackson.jar
+    public List<Goods> queryAllGoodsBybigsmaid( int gbsid,int gssid ){
+        return goodsService.queryAllGoodsBybigsmaid(gbsid,gssid);
     }
 }

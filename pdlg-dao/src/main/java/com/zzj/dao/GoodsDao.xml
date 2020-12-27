@@ -104,4 +104,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INNER JOIN warehouse w ON s.`wid`=w.`wid` WHERE w.wid=#{wid}
 
 	</select>
+	<select id="queryAllGoodsBybigsmaid"  resultMap="goodsmapper">
+        SELECT g.* FROM goods g INNER JOIN goodsort gs ON gs.gsid=g.gsid
+		  INNER JOIN goodbigsort gbig ON gs.gbsid=gbig.gbsid
+		  INNER JOIN goodsmallsort gsma ON gs.gssid=gsma.gssid
+		  WHERE gbig.gbsid=#{gbsid} AND gsma.gssid=#{gssid}
+    </select>
+	<select id="queryAllGoodsBybigid"  resultMap="goodsmapper">
+        SELECT g.* FROM goods g INNER JOIN goodsort gs ON gs.gsid=g.gsid
+		  INNER JOIN goodbigsort gbig ON gs.gbsid=gbig.gbsid
+		  INNER JOIN goodsmallsort gsma ON gs.gssid=gsma.gssid
+		  WHERE gbig.gbsid=#{gbsid}
+    </select>
 </mapper>

@@ -14,4 +14,6 @@ public interface GoodSortService {
     public List<GoodSort> queryGoodSortBygid(int gid);
     //查询所有
     public List<GoodSort> queryGoodSort();
+    //通过大分类查
+    public List<GoodSort> queryGoodSortBygbsid(int gbsid);
 }

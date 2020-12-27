@@ -32,5 +32,10 @@ public interface GoodsDao {
     public int goodsshangjia(int gid);
     //下架
     public int goodsxiajia(int gid);
+    //通过大小分类查
+    public List<Goods> queryAllGoodsBybigsmaid(@Param("gbsid") int gbsid,
+                                          @Param("gssid")int gssid);
+    //通过大分类查
+    public List<Goods> queryAllGoodsBybigid( int gbsid);
 
 }

@@ -16,6 +16,7 @@ public class Goods implements Serializable {
     private  int gstatus;
     private int gisshangjia;
     private double gshangjiaprice;
+
     //图片集合
     private List<GoodsImage> goodsImagelist;
 

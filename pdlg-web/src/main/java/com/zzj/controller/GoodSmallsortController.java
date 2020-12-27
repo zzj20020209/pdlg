@@ -40,7 +40,7 @@ public class GoodSmallsortController {
     }
 
     //添加
-    @RequestMapping(value ="/addGoodSmallsort.actio-n",produces = {"application/json;charset=utf-8"})
+    @RequestMapping(value ="/addGoodSmallsort.action",produces = {"application/json;charset=utf-8"})
     @CrossOrigin
     @ResponseBody
     public String addGoodSmallsort(GoodSmallsort goodSmallsort){
@@ -65,6 +65,7 @@ public class GoodSmallsortController {
     @RequestMapping(value ="/updateGoodSmallsort.action",produces = {"application/json;charset=utf-8"})
     @ResponseBody
     public String updateGoodSmallsort(GoodSmallsort goodSmallsort){
+
         int num=goodSmallsortService.updateGoodSmallsort(goodSmallsort);
         String msg="";
         if(num==1){

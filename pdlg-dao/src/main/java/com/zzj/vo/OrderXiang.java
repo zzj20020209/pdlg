@@ -10,6 +10,8 @@ public class OrderXiang implements Serializable {
     private Order order;
     private ShangHu shangHu;
     private User user;
+    private Goods goods;
+    private Warehouse warehouse;
     private double oxprice;
     private int oxcount;
 
@@ -23,6 +25,8 @@ public class OrderXiang implements Serializable {
                 ", order=" + order +
                 ", shangHu=" + shangHu +
                 ", user=" + user +
+                ", goods=" + goods +
+                ", warehouse=" + warehouse +
                 ", oxprice=" + oxprice +
                 ", oxcount=" + oxcount +
                 '}';
@@ -60,6 +64,22 @@ public class OrderXiang implements Serializable {
         this.user = user;
     }
 
+    public Goods getGoods() {
+        return goods;
+    }
+
+    public void setGoods(Goods goods) {
+        this.goods = goods;
+    }
+
+    public Warehouse getWarehouse() {
+        return warehouse;
+    }
+
+    public void setWarehouse(Warehouse warehouse) {
+        this.warehouse = warehouse;
+    }
+
     public double getOxprice() {
         return oxprice;
     }
@@ -76,11 +96,13 @@ public class OrderXiang implements Serializable {
         this.oxcount = oxcount;
     }
 
-    public OrderXiang(int oxid, Order order, ShangHu shangHu, User user, double oxprice, int oxcount) {
+    public OrderXiang(int oxid, Order order, ShangHu shangHu, User user, Goods goods, Warehouse warehouse, double oxprice, int oxcount) {
         this.oxid = oxid;
         this.order = order;
         this.shangHu = shangHu;
         this.user = user;
+        this.goods = goods;
+        this.warehouse = warehouse;
         this.oxprice = oxprice;
         this.oxcount = oxcount;
     }
