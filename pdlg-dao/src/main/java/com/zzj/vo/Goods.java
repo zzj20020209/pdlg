@@ -17,10 +17,28 @@ public class Goods implements Serializable {
     private int gisshangjia;
     private double gshangjiaprice;
 
+    private  int num;
+    private String ids;
     //图片集合
     private List<GoodsImage> goodsImagelist;
 
     public Goods() {
+    }
+
+    public String getIds() {
+        return ids;
+    }
+
+    public void setIds(String ids) {
+        this.ids = ids;
+    }
+
+    public int getNum() {
+        return 1;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 
     public List<GoodsImage> getGoodsImagelist() {
@@ -88,36 +106,11 @@ public class Goods implements Serializable {
         this.gstatus = gstatus;
     }
 
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "gid=" + gid +
-                ", gname='" + gname + '\'' +
-                ", gunit='" + gunit + '\'' +
-                ", gprice=" + gprice +
-                ", gimage='" + gimage + '\'' +
-                ", gsid=" + gsid +
-                ", gstatus=" + gstatus +
-                ", gisshangjia=" + gisshangjia +
-                ", gshangjiaprice=" + gshangjiaprice +
-                '}';
-    }
 
     public int getGisshangjia() {
         return gisshangjia;
     }
 
-    public Goods(int gid, String gname, String gunit, double gprice, String gimage, GoodSort gsid, int gstatus, int gisshangjia, double gshangjiaprice) {
-        this.gid = gid;
-        this.gname = gname;
-        this.gunit = gunit;
-        this.gprice = gprice;
-        this.gimage = gimage;
-        this.gsid = gsid;
-        this.gstatus = gstatus;
-        this.gisshangjia = gisshangjia;
-        this.gshangjiaprice = gshangjiaprice;
-    }
 
     public void setGisshangjia(int gisshangjia) {
         this.gisshangjia = gisshangjia;

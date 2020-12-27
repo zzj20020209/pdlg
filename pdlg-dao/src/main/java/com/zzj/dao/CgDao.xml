@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzj.dao.CgDao">
+    <insert id="cg" parameterType="CgVo">
+        insert into supply values(null,#{wid},#{sid},#{suinventory},default)
+    </insert>
+    <update id="gkc" parameterType="CgVo">
+        update warehouse set wskucun=wskucun-#{suinventory} where wid=#{wid}
+    </update>
+</mapper>
