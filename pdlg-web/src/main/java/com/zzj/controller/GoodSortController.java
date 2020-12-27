@@ -87,6 +87,7 @@ public class GoodSortController {
                 msg="设置失败,该分类下有商品!";
             }else{
                 goodSortService.deleteGoodSortBygbsid(goodBigSort.getGbsid());
+                msg="设置成功!";
             }
         }
 
