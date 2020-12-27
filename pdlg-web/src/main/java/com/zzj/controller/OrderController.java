@@ -22,7 +22,7 @@ public class OrderController {
                                     @RequestParam(value = "size",defaultValue = "0") Integer size){
         /*GoodBigSort goodBigSort=new GoodBigSort();
         goodBigSort.setGbsname(gbsname);
-        GoodSort goodSort=new GoodSort();
+        GoodSort goodSort=new GoodSort();a
         goodSort.setGoodBigSort(goodBigSort);
         goods.setGsid(goodSort);*/
         PageVo<Order> pageVo = orderService.queryAllOrder(order,page,size);

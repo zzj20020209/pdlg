@@ -5,7 +5,7 @@ import com.zzj.vo.Order;
 import java.util.List;
 
 public interface OrderDao {
-    //所有订单 分三种: 用户 商家 总店
+    //所有订单 分三种: 用户 商家 总店a
     public List<Order> queryAllOrder(Order order);
     //订单数量
     public int querycountOrder(Order order);

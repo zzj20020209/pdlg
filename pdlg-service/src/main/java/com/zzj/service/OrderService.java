@@ -7,6 +7,6 @@ import com.zzj.vo.PageVo;
 
 public interface OrderService {
 
-    //查询所有订单
+    //查询所有订单a
     public PageVo<Order> queryAllOrder(Order order, int page, int rows) ;
 }

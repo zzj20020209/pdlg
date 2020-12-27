@@ -18,7 +18,7 @@ public class OrderServiceImpl implements OrderService {
     public PageVo<Order> queryAllOrder(Order order, int page, int rows) {
         PageVo<Order> pageVo = new PageVo<>();
 
-        //在需要分页的代码调用前 执行以下代码
+        //在需要分页的代码调用前 执行以下代码a
         PageHelper.startPage(page, rows);
         //获取分页后 显示的数据集合
         pageVo.setRows(orderDao.queryAllOrder(order));
