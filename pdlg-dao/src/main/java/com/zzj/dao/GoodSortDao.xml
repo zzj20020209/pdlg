@@ -31,4 +31,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="queryGoodSort" resultMap="goodSortMap">
              SELECT * FROM goodsort
     </select>
+    <select id="queryGoodSortBygbsid" resultMap="goodSortMap">
+             SELECT gs.* FROM goodsort gs  INNER JOIN goodbigsort gbig ON gs.gbsid=gbig.gbsid
+             where gs.gbsid=#{gbsid}
+    </select>
 </mapper>

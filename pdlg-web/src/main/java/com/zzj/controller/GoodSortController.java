@@ -1,10 +1,8 @@
 package com.zzj.controller;
 
 import com.zzj.service.GoodSortService;
-import com.zzj.vo.GoodBigSort;
-import com.zzj.vo.GoodSmallsort;
-import com.zzj.vo.GoodSort;
-import com.zzj.vo.PageVo;
+import com.zzj.service.GoodsService;
+import com.zzj.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,6 +19,8 @@ import java.util.Map;
 public class GoodSortController {
     @Autowired
     GoodSortService goodSortService;
+    @Autowired
+    GoodsService goodsService;
 
     //通过商品ID查
     @RequestMapping("/queryGoodSort.action")
@@ -43,6 +43,8 @@ public class GoodSortController {
     @CrossOrigin
     @ResponseBody
     public String addGoodSort(GoodBigSort goodBigSort , String mids){
+        System.out.println(goodBigSort);
+        System.out.println(mids);
         String msg="";
         List<GoodSort> goodSortList=new ArrayList<>();
         if(mids!=""){
@@ -55,21 +57,38 @@ public class GoodSortController {
                 goodsmallsort.setGssid(Integer.parseInt(s));
                 goodSort.setGoodSmallsort(goodsmallsort);
                 goodSortList.add(goodSort);
-
+                List<Goods> goods=goodsService.queryAllGoodsBybigsmaid(goodBigSort.getGbsid(),Integer.parseInt(s));
+                if(goods.size()>0){
+                    msg="设置失败,该分类下有商品!";
+                }else{
+                    goodSortService.deleteGoodSortBygbsid(goodBigSort.getGbsid());
+                    int numm=goodSortService.addGoodSortBybidsid(goodSortList);
+                    if(numm==idsss.length){
+                        msg="设置成功";
+                    }else{
+                        msg="设置失败";
+                    }
+                }
                /* List<UserroleInfo> userroleInfo1=userroleInfoService.queryByeid(employeeInfo.getId());
                 if(userroleInfo1.size()>0){
                     userroleInfoService.deleteUserroleInfoByeid(employeeInfo.getId());
                 }*/
-                int numm=goodSortService.addGoodSortBybidsid(goodSortList);
+               /* int numm=goodSortService.addGoodSortBybidsid(goodSortList);
                 if(numm==idsss.length){
                     msg="设置成功";
                 }else{
                     msg="设置失败";
-                }
+                }*/
 
             }
         }else{
-            goodSortService.deleteGoodSortBygbsid(goodBigSort.getGbsid());
+            List<Goods> goods=goodsService.queryAllGoodsBybigid(goodBigSort.getGbsid());
+            if(goods.size()>0){
+                msg="设置失败,该分类下有商品!";
+            }else{
+                goodSortService.deleteGoodSortBygbsid(goodBigSort.getGbsid());
+                msg="设置成功!";
+            }
         }
 
         return  msg;

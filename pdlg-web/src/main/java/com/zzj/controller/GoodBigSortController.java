@@ -39,7 +39,7 @@ public class GoodBigSortController {
         return goodBigSortService.queryAllGoodBigSortall(goodBigSort);
     }
     //添加
-    @RequestMapping(value ="/addGoodBigSort.actio-n",produces = {"application/json;charset=utf-8"})
+    @RequestMapping(value ="/addGoodBigSort.action",produces = {"application/json;charset=utf-8"})
     @CrossOrigin
     @ResponseBody
     public String addGoodBigSort(GoodBigSort goodBigSort){
@@ -64,6 +64,7 @@ public class GoodBigSortController {
     @RequestMapping(value ="/updateGoodBigSort.action",produces = {"application/json;charset=utf-8"})
     @ResponseBody
     public String updateGoodBigSort(GoodBigSort goodBigSort){
+
         int num=goodBigSortService.updateGoodBigSort(goodBigSort);
         String msg="";
         if(num==1){

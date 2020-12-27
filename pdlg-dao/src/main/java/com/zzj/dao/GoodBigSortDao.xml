@@ -35,9 +35,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </select>
     <update id="updateGoodBigSort" parameterType="goodBigSort">
 
-		update goodBigSort set
-		gbsname=#{gbsname},
-		gbsicon=#{gbsicon},
+		update goodBigSort
+        <set>
+            <if test="gbsname!=null">gbsname=#{gbsname},</if>
+            <if test="gbsicon!=null">gbsicon=#{gbsicon},</if>
+        </set>
           where gbsid=#{gbsid}
 
 	</update>

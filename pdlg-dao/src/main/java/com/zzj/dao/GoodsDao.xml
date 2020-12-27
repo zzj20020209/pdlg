@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				</if>
 			</if>
 		</where>
-		ORDER BY g.gid ASC
+
 	</select>
 
 	<select id="querycountGoods" parameterType="goods" resultType="int">
@@ -52,9 +52,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<insert id="addGoods" parameterType="goods" useGeneratedKeys="true" keyColumn="gid" keyProperty="gid">
-		INSERT INTO goods(gname,gunit,gprice,gimage,gsid,gstatus)
+		INSERT INTO goods(gname,gunit,gprice,gimage,gsid,gstatus,gisshangjia,gshangjiaprice)
 		values (#{goods.gname},#{goods.gunit},#{goods.gprice}
-		,#{goods.gimage},#{gssid},1)
+		,#{goods.gimage},#{gssid},,default,default,#{goods.gshangjiaprice})
 	</insert>
 
 	<delete id="deleteGoods" parameterType="int">
@@ -62,6 +62,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	</delete>
+	<update id="goodsshangjia" parameterType="int">
+		update goods set gisshangjia=1 where gid=#{gid}
+
+	</update>
+	<update id="goodsxiajia" parameterType="int">
+		update goods set gisshangjia=2 where gid=#{gid}
+
+	</update>
 	<select id="queryGoodsBygid" parameterType="int" resultMap="goodsmapper">
         select * from goods where gid=#{gid}
     </select>
@@ -96,4 +104,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INNER JOIN warehouse w ON s.`wid`=w.`wid` WHERE w.wid=#{wid}
 
 	</select>
+	<select id="queryAllGoodsBybigsmaid"  resultMap="goodsmapper">
+        SELECT g.* FROM goods g INNER JOIN goodsort gs ON gs.gsid=g.gsid
+		  INNER JOIN goodbigsort gbig ON gs.gbsid=gbig.gbsid
+		  INNER JOIN goodsmallsort gsma ON gs.gssid=gsma.gssid
+		  WHERE gbig.gbsid=#{gbsid} AND gsma.gssid=#{gssid}
+    </select>
+	<select id="queryAllGoodsBybigid"  resultMap="goodsmapper">
+        SELECT g.* FROM goods g INNER JOIN goodsort gs ON gs.gsid=g.gsid
+		  INNER JOIN goodbigsort gbig ON gs.gbsid=gbig.gbsid
+		  INNER JOIN goodsmallsort gsma ON gs.gssid=gsma.gssid
+		  WHERE gbig.gbsid=#{gbsid}
+    </select>
 </mapper>

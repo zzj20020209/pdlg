@@ -3,10 +3,10 @@
 "-//mybatis.org//DTD config 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+<!--
 	<settings>
 		<setting name="logImpl" value="LOG4J"/>
-	</settings>
+	</settings>-->
 
 
 	<!--  批量设置别名-->
