@@ -25,6 +25,33 @@ public class Goods implements Serializable {
     public Goods() {
     }
 
+    @Override
+    public String toString() {
+        return "Goods{" +
+                "gid=" + gid +
+                ", gname='" + gname + '\'' +
+                ", gunit='" + gunit + '\'' +
+                ", gprice=" + gprice +
+                ", gimage='" + gimage + '\'' +
+                ", gsid=" + gsid +
+                ", gstatus=" + gstatus +
+                ", gisshangjia=" + gisshangjia +
+                ", gshangjiaprice=" + gshangjiaprice +
+                '}';
+    }
+
+    public Goods(int gid, String gname, String gunit, double gprice, String gimage, GoodSort gsid, int gstatus, int gisshangjia, double gshangjiaprice) {
+        this.gid = gid;
+        this.gname = gname;
+        this.gunit = gunit;
+        this.gprice = gprice;
+        this.gimage = gimage;
+        this.gsid = gsid;
+        this.gstatus = gstatus;
+        this.gisshangjia = gisshangjia;
+        this.gshangjiaprice = gshangjiaprice;
+    }
+
     public String getIds() {
         return ids;
     }
