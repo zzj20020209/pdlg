@@ -16,4 +16,6 @@ public interface GwcDao {
     public Gwc gwcx(Gwc gwc);
     //购物车商品删除
     public int scgwc(int gwid);
+    //根据购物车id查询
+    public Gwc gwidcx(int gwid);
 }

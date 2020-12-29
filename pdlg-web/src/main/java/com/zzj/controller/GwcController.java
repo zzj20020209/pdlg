@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin
@@ -46,5 +47,19 @@ public class GwcController {
         }
 
         return "成功从购物车中移除";
+    }
+
+    @PostMapping("/gwidcx.action")
+    public List<Gwc> gwidcx(String gwid){
+        String[] gwids=gwid.split(",");
+        int[] gw=new int[gwids.length];
+        List<Gwc> gwc=new ArrayList<>();
+
+        for (int i=0;i<gwids.length;i++){
+            gw[i]=Integer.parseInt(gwids[i]);
+            Gwc gwc1=gwcService.gwidcx(gw[i]);
+            gwc.add(gwc1);
+        }
+        return gwc;
     }
 }

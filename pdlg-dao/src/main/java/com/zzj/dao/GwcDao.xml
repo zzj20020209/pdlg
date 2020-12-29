@@ -18,4 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="scgwc" parameterType="int">
 		delete from gwc where gwid=#{gwid}
 	</delete>
+	<select id="gwidcx" parameterType="Gwc" resultType="Gwc">
+		select * from gwc where gwid=#{gwid}
+	</select>
 </mapper>

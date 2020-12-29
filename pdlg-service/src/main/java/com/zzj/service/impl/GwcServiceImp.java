@@ -37,4 +37,9 @@ public class GwcServiceImp implements GwcService {
     public int scgwc(int gwid) {
         return gwcDao.scgwc(gwid);
     }
+
+    @Override
+    public Gwc gwidcx(int gwid) {
+        return gwcDao.gwidcx(gwid);
+    }
 }

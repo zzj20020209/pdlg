@@ -35,7 +35,8 @@ public class ShController {
     public PageVo<Shvo> shcxs(Shvo shvo,
                                 @RequestParam(value = "page",defaultValue = "1") int page,
                                 @RequestParam(value = "rows",defaultValue = "5")int rows){
-        return shService.shcxs(shvo,page,rows);
+        PageVo<Shvo> p1=shService.shcxs(shvo,page,rows);
+        return p1;
     }
 
     @CrossOrigin
