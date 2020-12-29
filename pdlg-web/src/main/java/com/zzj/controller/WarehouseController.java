@@ -250,7 +250,7 @@ public class WarehouseController {
             System.out.println("supply"+supply);
             int num1=orderXiangService.updateOrderXiangCang(id,gidstridss[i],cangstridss[i]);
            int num2=supplyService.updateSupplykucunjian(supply,cangstridss[i],gidstridss[i]);
-            int num3=warehouseService.updateWarehousekucunjian(cangstridss[i],countstridss[i]);
+            int num3=warehouseService.updateWarehousekucunzeng(cangstridss[i],countstridss[i]);
             str="出库成功!";
 
         }
