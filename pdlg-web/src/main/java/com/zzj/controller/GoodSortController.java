@@ -43,9 +43,10 @@ public class GoodSortController {
     @RequestMapping("/cx.action")
     @CrossOrigin
     @ResponseBody
-    public GoodSort cx(GoodSort goodSort)
+    public List<Goods> cx(int gbsid,int gssid)
     {
-        return goodSortService.cx(goodSort);
+        System.out.println(goodsService.queryAllGoodsBybigsmaid(gbsid,gssid));
+        return goodsService.queryAllGoodsBybigsmaid(gbsid,gssid);
     }
 
 

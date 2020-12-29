@@ -58,6 +58,8 @@ public class GoodsController {
     @CrossOrigin
     @ResponseBody
     public Goods goodscx(Goods goods){
+
+
         return goodsService.queryGoodsBygname(goods);
     }
 

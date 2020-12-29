@@ -35,7 +35,4 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
              SELECT gs.* FROM goodsort gs  INNER JOIN goodbigsort gbig ON gs.gbsid=gbig.gbsid
              where gs.gbsid=#{gbsid}
     </select>
-    <select id="cx" parameterType="GoodSort" resultType="GoodSort">
-        SELECT * FROM goodsort WHERE gbsid=#{gbsid} AND gssid=#{gssid}
-    </select>
 </mapper>

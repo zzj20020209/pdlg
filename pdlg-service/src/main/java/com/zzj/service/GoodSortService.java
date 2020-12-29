@@ -17,6 +17,4 @@ public interface GoodSortService {
     //通过大分类查
     public List<GoodSort> queryGoodSortBygbsid(int gbsid);
 
-    //查是否存在该分类
-    public GoodSort cx(GoodSort goodSort);
 }
