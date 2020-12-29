@@ -80,7 +80,7 @@ public class CgController {
                 }
             }else{
                 Goods goodsf=goodsService.queryGoodsBygid(spid[i]);
-                msg=msg+goodsf.getGname()+"采购失败："+warehouse.getWname()+"的库存不足!"+" ";
+                msg=msg+goodsf.getGname()+"采购失败：【"+warehouse.getWname()+"】的库存不足!"+" ";
             }
         }
         return msg;

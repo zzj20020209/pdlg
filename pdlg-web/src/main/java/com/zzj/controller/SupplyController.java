@@ -23,4 +23,11 @@ public class SupplyController {
         return supplyService.querySupplyBywid(wid);
     }
 
+    @RequestMapping("/kccx.action")
+    @CrossOrigin
+    @ResponseBody
+    public Supply kccx(int gid)
+    {
+        return supplyService.kccx(gid);
+    }
 }

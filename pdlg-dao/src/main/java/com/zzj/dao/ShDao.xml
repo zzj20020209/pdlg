@@ -57,6 +57,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     </select>
     <select id="shdl" parameterType="Shvo" resultType="Shvo">
-        select * from shanghu where yhm=#{yhm} and password=#{password}
+        select * from shanghu where yhm=#{yhm} and password=#{password} and state=1
     </select>
 </mapper>

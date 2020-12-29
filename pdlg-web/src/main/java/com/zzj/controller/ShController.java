@@ -106,7 +106,7 @@ public class ShController {
             map.put("yhm",shvo1.getSname());
         }else{
             map.put("code","1");
-            map.put("msg","登录失败");
+            map.put("msg","账号密码错误或该商户不存在！");
             //map.put("username","test");
         }
 

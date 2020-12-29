@@ -9,4 +9,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="addsp" parameterType="Gwc" >
 		insert into gwc values(null,#{uid},#{gwname},#{gwunit},#{gwprice},#{gwimage},#{gwsl})
 	</insert>
+	<update id="slgb" parameterType="Gwc">
+		update gwc set gwsl=gwsl+#{gwsl} where gwname=#{gwname}
+	</update>
+	<select id="gwcx" parameterType="Gwc" resultType="Gwc">
+		select * from gwc where gwname=#{gwname} and uid=#{uid}
+	</select>
+	<delete id="scgwc" parameterType="int">
+		delete from gwc where gwid=#{gwid}
+	</delete>
 </mapper>

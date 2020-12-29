@@ -21,4 +21,6 @@ public interface SupplyService {
     //增加库存
     public int updateSupplykucunzeng(@Param("supply")Supply supply,
                                      @Param("wid") int wid, @Param("gid")int gid);
+    //根据商品id差仓库库存
+    public Supply kccx(@Param("gid")int gid);
 }
