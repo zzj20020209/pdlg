@@ -55,4 +55,10 @@
     <select id="queryUserName" parameterType="String" resultType="user">
         select * from user where username=#{username}
     </select>
+    <update id="updateUserjia" parameterType="user" >
+    update user set price=price-#{price}
+    where id = #{id}
+    </update>
+
+
 </mapper>

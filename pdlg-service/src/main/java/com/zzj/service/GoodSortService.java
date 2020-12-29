@@ -2,6 +2,7 @@ package com.zzj.service;
 
 import com.zzj.vo.GoodSort;
 import com.zzj.vo.PageVo;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -16,4 +17,10 @@ public interface GoodSortService {
     public List<GoodSort> queryGoodSort();
     //通过大分类查
     public List<GoodSort> queryGoodSortBygbsid(int gbsid);
+    //删除
+    public int deleteGoodSortBygbsidgssid(@Param("gbsid")int gbsid, @Param("gssid")int gssid);
+    //添加
+    public int addGoodSortBybidsiddan(@Param("gbsid")int gbsid, @Param("gssid")int gssid);
+    //查询
+    public GoodSort queryGoodSortBygbgsid(@Param("gbsid")int gbsid, @Param("gssid")int gssid);
 }

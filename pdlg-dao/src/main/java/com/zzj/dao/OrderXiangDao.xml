@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
-	<select id="queryAllOrderXiangUser" resultMap="orderXiangmapper">
+	<select id="queryAllOrderXiangUser" resultMap="orderXiangmapper1">
 
 		SELECT ox.* FROM orderxiang ox
 		INNER JOIN orderr o ON o.id=ox.oid
@@ -110,4 +110,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="zhuangtai!='' and zhuangtai!=null ">and o.oZLogistics =#{zhuangtai} </if>
 		</where>
 	</select>
+	<update id="updateOrderXiangCang" parameterType="order">
+		UPDATE orderxiang SET wid =#{wid} WHERE oid=#{oid} AND gid=#{gid}
+	</update>
 </mapper>

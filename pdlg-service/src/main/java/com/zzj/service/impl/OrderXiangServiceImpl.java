@@ -8,10 +8,17 @@ import com.zzj.vo.PageVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class OrderXiangServiceImpl implements OrderXiangService {
     @Autowired
     OrderXiangDao orderXiangDao;
+
+    @Override
+    public List<OrderXiang> queryAllOrderXiangByoid(int oid) {
+        return orderXiangDao.queryAllOrderXiangByoid(oid);
+    }
 
     @Override
     public PageVo<OrderXiang> queryAllOrderXiangUser(int uid, String zhuangtai, int page, int rows) {
@@ -53,5 +60,10 @@ public class OrderXiangServiceImpl implements OrderXiangService {
         pageVo.setTotal(orderXiangDao.querycountOrderXiangZong(zhuangtai));
 
         return pageVo;
+    }
+
+    @Override
+    public int updateOrderXiangCang(int oid, int gid, int wid) {
+        return orderXiangDao.updateOrderXiangCang(oid,gid,wid);
     }
 }

@@ -21,12 +21,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
             (#{goodSortList.goodBigSort.gbsid},#{goodSortList.goodSmallsort.gssid})
         </foreach>
     </insert>
+    <insert id="addGoodSortBybidsiddan" >
+        INSERT INTO goodsort(gbsid,gssid)
+        values
+            (#{gbsid},#{gssid})
+    </insert>
     <delete id="deleteGoodSortBygbsid" parameterType="int">
 		DELETE FROM goodsort WHERE gbsid=#{gbsid};
+	</delete>
+    <delete id="deleteGoodSortBygbsidgssid" parameterType="int">
+		DELETE FROM goodsort WHERE gbsid=#{gbsid} and gssid=#{gssid}
 	</delete>
     <select id="queryGoodSortBygid" parameterType="int" resultMap="goodSortMap">
              SELECT s.* FROM goodsort s INNER JOIN goods g ON s.`gsid`=g.gsid
               where g.gid=#{gid}
+    </select>
+    <select id="queryGoodSortBygbgsid"  resultMap="goodSortMap">
+        select  * from goodsort where gbsid=#{gbsid} and gssid=#{gssid}
     </select>
     <select id="queryGoodSort" resultMap="goodSortMap">
              SELECT * FROM goodsort

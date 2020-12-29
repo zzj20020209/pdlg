@@ -21,4 +21,8 @@ public interface UserDao {
     public int queryUserByCount(User user);
 
     public User queryUserName(String username);
+    //余额减
+    public int updateUserjian(User user);
+    //余额加
+    public int updateUserjia(User user);
 }

@@ -54,4 +54,21 @@ public class OrderServiceImpl implements OrderService {
 
         return pageVo;
     }
+
+    @Override
+    public int updateOrder(int oid) {
+        return orderDao.updateOrder(oid);
+    }
+
+    @Override
+    public Order queryAllOrderByoid(int oid) {
+        return orderDao.queryAllOrderByoid(oid);
+    }
+
+    @Override
+    public int updateOrderzhuang(Order order) {
+        return orderDao.updateOrderzhuang(order);
+    }
+
+
 }

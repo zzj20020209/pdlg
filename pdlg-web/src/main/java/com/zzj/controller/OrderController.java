@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class OrderController {
     @Autowired
@@ -44,5 +50,18 @@ public class OrderController {
                                            @RequestParam(value = "size",defaultValue = "0") Integer size){
         PageVo<Order> pageVo = orderService.queryAllOrderZong(order,page,size);
         return pageVo;
+    }
+    @RequestMapping(value ="/updateOrderzhuang.action",produces = {"application/json;charset=utf-8"})
+    @CrossOrigin
+    @ResponseBody
+    public String updateOrderzhuang(Order order){
+        String msg="";
+        int num=orderService.updateOrderzhuang(order);
+        if(num==1){
+            msg="操作成功!";
+        }else{
+            msg="操作失败!";
+        }
+        return  msg;
     }
 }

@@ -1,5 +1,6 @@
 package com.zzj.controller;
 
+import com.zzj.service.GoodSmallsortService;
 import com.zzj.service.GoodSortService;
 import com.zzj.service.GoodsService;
 import com.zzj.vo.*;
@@ -10,10 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class GoodSortController {
@@ -21,7 +19,8 @@ public class GoodSortController {
     GoodSortService goodSortService;
     @Autowired
     GoodsService goodsService;
-
+    @Autowired
+    GoodSmallsortService goodSmallsortService;
     //通过商品ID查
     @RequestMapping("/queryGoodSort.action")
     @CrossOrigin
@@ -69,17 +68,6 @@ public class GoodSortController {
                         msg="设置失败";
                     }
                 }
-               /* List<UserroleInfo> userroleInfo1=userroleInfoService.queryByeid(employeeInfo.getId());
-                if(userroleInfo1.size()>0){
-                    userroleInfoService.deleteUserroleInfoByeid(employeeInfo.getId());
-                }*/
-               /* int numm=goodSortService.addGoodSortBybidsid(goodSortList);
-                if(numm==idsss.length){
-                    msg="设置成功";
-                }else{
-                    msg="设置失败";
-                }*/
-
             }
         }else{
             List<Goods> goods=goodsService.queryAllGoodsBybigid(goodBigSort.getGbsid());
@@ -93,5 +81,4 @@ public class GoodSortController {
 
         return  msg;
     }
-
 }

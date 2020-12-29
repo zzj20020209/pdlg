@@ -29,6 +29,11 @@ public interface OrderDao {
     public Order queryAllOrderByoid( int oid);
     //添加订单
     //通过ID查订单
-    //修改订单
+    //修改订单状态
+    public int updateOrder(int oid);
+    //修改状态
+    public int updateOrderzhuang(Order order);
+
+
 
 }

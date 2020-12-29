@@ -42,4 +42,9 @@ public class SupplyServiceImpl implements SupplyService {
     public int updateSupplykucunzeng(Supply supply, int wid, int gid) {
         return supplyDao.updateSupplykucunzeng(supply,wid,gid);
     }
+
+    @Override
+    public List<Supply> querySupplyBygid(int gid) {
+        return supplyDao.querySupplyBygid(gid);
+    }
 }

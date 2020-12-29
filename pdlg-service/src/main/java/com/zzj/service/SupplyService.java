@@ -21,4 +21,6 @@ public interface SupplyService {
     //增加库存
     public int updateSupplykucunzeng(@Param("supply")Supply supply,
                                      @Param("wid") int wid, @Param("gid")int gid);
+    //根据商品ID查
+    public List<Supply> querySupplyBygid(int gid);
 }

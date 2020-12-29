@@ -26,14 +26,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	</select>
 	<select id="querycountOrderUser"  resultType="int">
-		SELECT COUNT(1) FROM (
+
 		select count(*) FROM  orderr o
 		INNER JOIN orderxiang ox ON o.id=ox.oid
 		INNER JOIN USER u ON u.id=ox.uid
 		<where>
 			u.id=#{uid}
 			<if test="order.oYogistics!='' and order.oYogistics!=null ">and o.oYogistics =#{order.oYogistics} </if>
-		</where>)t
+		</where>
 	</select>
 
 	<select id="queryAllOrderShang" resultMap="ordermapper">
@@ -42,20 +42,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INNER JOIN orderxiang ox ON o.id=ox.oid
 		INNER JOIN shanghu s ON ox.sid=s.sid
 		<where>
-			s.sid=#{sid} and o.oZLogistics='已出库'
+			s.sid=#{sid} and oSLogistics!=''
 			<if test="order.oSLogistics!='' and order.oSLogistics!=null ">and o.oSLogistics =#{order.oSLogistics} </if>
 		</where>
 
 	</select>
 	<select id="querycountOrderShang"  resultType="int">
-		SELECT COUNT(1) FROM (
+
 		select count(*) FROM  orderr o
 		INNER JOIN orderxiang ox ON o.id=ox.oid
 		INNER JOIN shanghu s ON ox.sid=s.sid
 		<where>
-			s.sid=#{sid} and o.oZLogistics='已出库'
+			s.sid=#{sid} and oSLogistics!=''
 			<if test="order.oSLogistics!='' and order.oSLogistics!=null ">and o.oSLogistics =#{order.oSLogistics} </if>
-		</where>)t
+		</where>
 	</select>
 
 	<select id="queryAllOrderZong" resultMap="ordermapper">
@@ -63,25 +63,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT DISTINCT o.* FROM orderr o
 		INNER JOIN orderxiang ox ON o.id=ox.oid
 		<where>
-				o.oYogistics='待配送'
+			oZLogistics!=''
 			<if test="order.oZLogistics!='' and order.oZLogistics!=null ">and o.oZLogistics =#{order.oZLogistics} </if>
 		</where>
 
 	</select>
 	<select id="querycountOrderZong"  resultType="int">
-		SELECT COUNT(1) FROM (
+
 		select count(*) FROM  orderr o
 		INNER JOIN orderxiang ox ON o.id=ox.oid
 		<where>
-			o.oYogistics='待配送'
+			oZLogistics!=''
 			<if test="order.oZLogistics!='' and order.oZLogistics!=null ">and o.oZLogistics =#{order.oZLogistics} </if>
-		</where>)t
+		</where>
 	</select>
 
-	<select id="queryAllOrderByoid" parameterType="int" resultMap="ordermapper1">
+	<select id="queryAllOrderByoid" parameterType="int" resultMap="ordermapper">
 
 		SELECT   * FROM orderr  where id=#{oid}
 
 	</select>
+	<update id="updateOrder" parameterType="int">
+		update orderr set oYogistics='待发货' where id=#{id}
+	</update>
+	<update id="updateOrderzhuang" parameterType="order">
+		update orderr
+		<set>
+		<if test="oYogistics!=null">  oYogistics=#{oYogistics}, </if>
+		<if test="oSLogistics!=null">  oSLogistics=#{oSLogistics}, </if>
+		<if test="oZLogistics!=null">  oZLogistics=#{oZLogistics} ,</if>
+		</set>
+		where id=#{id}
+	</update>
 
 </mapper>

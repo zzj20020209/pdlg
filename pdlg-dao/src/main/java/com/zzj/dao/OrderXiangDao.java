@@ -24,4 +24,8 @@ public interface OrderXiangDao {
     public List<OrderXiang> queryAllOrderXiangZong(@Param("zhuangtai") String zhuangtai );
     //总店订单数量
     public int querycountOrderXiangZong(@Param("zhuangtai") String zhuangtai);
+    //修改仓库ID
+    public int updateOrderXiangCang(@Param("oid")int oid,
+                                    @Param("gid")int gid,
+                                    @Param("wid")int wid);
 }

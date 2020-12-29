@@ -1,12 +1,7 @@
 package com.zzj.controller;
 
-import com.zzj.service.GoodsService;
-import com.zzj.service.SupplyService;
-import com.zzj.service.WarehouseService;
-import com.zzj.vo.Goods;
-import com.zzj.vo.PageVo;
-import com.zzj.vo.Supply;
-import com.zzj.vo.Warehouse;
+import com.zzj.service.*;
+import com.zzj.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,7 +21,10 @@ public class WarehouseController {
     SupplyService supplyService;
     @Autowired
     GoodsService goodsService;
-
+    @Autowired
+    OrderService orderService;
+    @Autowired
+    OrderXiangService orderXiangService;
     //查询所有
     @RequestMapping("/queryWarehouse.action")
     @CrossOrigin
@@ -221,9 +219,62 @@ public class WarehouseController {
                  str=str+goodsf.getGname()+"转移到"+warehouse.getWname()+"失败!"+" ";
              }
         }
-
-
         return  str;
     }
+    //出库
+    @RequestMapping(value ="/chuku.action",produces = {"application/json;charset=utf-8"})
+    @CrossOrigin
+    @ResponseBody
+    public String chuku(String suidstr,String gidstr,String countstr,String cangstr,int id){
+        System.out.println("订单"+id);
+        String str="";
+        //仓库商品ID
+        String[] suidstrids =suidstr.split(",");
+        int[] suidstridss = new int[suidstrids.length];
+        //数量集合
+        String[] countstrids =countstr.split(",");
+        int[] countstridss = new int[countstrids.length];
+        //仓库集合
+        String[] cangstrids =cangstr.split(",");
+        int[] cangstridss = new int[cangstrids.length];
+        //商品集合
+        String[] gidstrids =gidstr.split(",");
+        int[] gidstridss = new int[gidstrids.length];
+        for (int i = 0; i < suidstridss.length; i++) {
+            suidstridss[i] = Integer.parseInt(suidstrids[i]);
+            countstridss[i] = Integer.parseInt(countstrids[i]);
+            cangstridss[i] = Integer.parseInt(cangstrids[i]);
+            gidstridss[i] = Integer.parseInt(gidstrids[i]);
+            //先修改当前仓库库存
+            Supply supply=supplyService.querySupplyBywidgid(cangstridss[i],gidstridss[i]);
+            System.out.println("supply"+supply);
+            int num1=orderXiangService.updateOrderXiangCang(id,gidstridss[i],cangstridss[i]);
+           int num2=supplyService.updateSupplykucunjian(supply,cangstridss[i],gidstridss[i]);
+            int num3=warehouseService.updateWarehousekucunjian(cangstridss[i],countstridss[i]);
+            str="出库成功!";
 
+        }
+        //判断是否订单都出库了
+        Order order=orderService.queryAllOrderByoid(id);
+        int num=0;
+        for(int i=0;i<order.getOrderXiangList().size();i++){
+           if(order.getOrderXiangList().get(i).getWarehouse()!=null){
+               num++;
+           }
+         }
+        System.out.println("现有的"+num);
+        System.out.println("订单的的"+order.getOrderXiangList().size());
+       if(num==order.getOrderXiangList().size()){
+            //改变总店订单状态 已出库
+            //改变商家订单状态 待收货
+            Order order1=new Order();
+            order1.setId(id);
+            order1.setoZLogistics("已出库");
+            order1.setoSLogistics("待收货");
+            order1.setoYogistics("待配送");
+            int num1=orderService.updateOrderzhuang(order1);
+            str="订单已全库";
+        }
+        return str;
+    }
 }

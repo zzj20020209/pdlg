@@ -14,6 +14,16 @@ public class OrderXiang implements Serializable {
     private Warehouse warehouse;
     private double oxprice;
     private int oxcount;
+    //仅供页面使用
+    private int num;
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
+    }
 
     public OrderXiang() {
     }
