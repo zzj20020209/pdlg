@@ -197,8 +197,8 @@ public class WarehouseController {
                  if(supply!=null){
                     Supply supply1=new Supply();
                      supply1.setSuinventory(countstridss[i]);
-                     int num1=supplyService.updateSupplykucunjian(supply1,wid,gidstridss[i]);
-                     int num2=supplyService.updateSupplykucunzeng(supply1,cangstridss[i],gidstridss[i]);
+                     int num1=supplyService.updateSupplykucunjian(countstridss[i],wid,gidstridss[i]);
+                     int num2=supplyService.updateSupplykucunzeng(countstridss[i],cangstridss[i],gidstridss[i]);
                      int num3=warehouseService.updateWarehousekucunzeng(wid,countstridss[i]);
                      int num4=warehouseService.updateWarehousekucunjian(cangstridss[i],countstridss[i]);
                      Goods goods=goodsService.queryGoodsBygid(gidstridss[i]);
@@ -207,7 +207,7 @@ public class WarehouseController {
                      // 不存在就添加新的数据    修改现仓库数据和     修改选择仓库库存
                     Supply supplyadd=new Supply();
                      supplyadd.setSuinventory(countstridss[i]);
-                     int num1=supplyService.updateSupplykucunjian(supplyadd,wid,gidstridss[i]);
+                     int num1=supplyService.updateSupplykucunjian(countstridss[i],wid,gidstridss[i]);
                      int num2=supplyService.addSupply(supplyadd,cangstridss[i],gidstridss[i]);
                      int num3=warehouseService.updateWarehousekucunzeng(wid,countstridss[i]);
                      int num4=warehouseService.updateWarehousekucunjian(cangstridss[i],countstridss[i]);
@@ -249,7 +249,7 @@ public class WarehouseController {
             Supply supply=supplyService.querySupplyBywidgid(cangstridss[i],gidstridss[i]);
             System.out.println("supply"+supply);
             int num1=orderXiangService.updateOrderXiangCang(id,gidstridss[i],cangstridss[i]);
-           int num2=supplyService.updateSupplykucunjian(supply,cangstridss[i],gidstridss[i]);
+           int num2=supplyService.updateSupplykucunjian(countstridss[i],cangstridss[i],gidstridss[i]);
             int num3=warehouseService.updateWarehousekucunzeng(cangstridss[i],countstridss[i]);
             str="出库成功!";
 

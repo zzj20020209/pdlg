@@ -23,10 +23,10 @@ public interface SupplyDao {
                          @Param("wid") int wid, @Param("gid")int gid);
 
     //减少库存
-    public int updateSupplykucunjian(@Param("supply")Supply supply,
+    public int updateSupplykucunjian(@Param("count") int count,
                          @Param("wid") int wid, @Param("gid")int gid);
     //增加库存
-    public int updateSupplykucunzeng(@Param("supply")Supply supply,
+    public int updateSupplykucunzeng(@Param("count") int count,
                                      @Param("wid") int wid, @Param("gid")int gid);
     //根据商品ID查
     public List<Supply> querySupplyBygid(int gid);

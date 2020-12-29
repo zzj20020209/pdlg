@@ -55,9 +55,8 @@ public class CgController {
                 Supply supply=supplyService.querySupplyBywidgid(ckid[i],spid[i]);
                 if(supply!=null){
                     System.out.println("存在啊"+supply);
-                    Supply supply1=new Supply();
-                    supply1.setSuinventory(zsl[i]);
-                    int num2=supplyService.updateSupplykucunzeng(supply1,ckid[i],spid[i]);
+
+                    int num2=supplyService.updateSupplykucunzeng(zsl[i],ckid[i],spid[i]);
                     int num4=warehouseService.updateWarehousekucunjian(ckid[i],zsl[i]);
                     Goods goods=goodsService.queryGoodsBygid(spid[i]);
                     msg=msg+goods.getGname()+"采购到"+warehouse.getWname()+"成功!"+" ";

@@ -38,10 +38,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		,#{supply.suinventory},default )
 	</insert>
 	<update id="updateSupplykucunjian" >
-		UPDATE supply SET suinventory=suinventory-#{supply.suinventory} WHERE wid=#{wid} AND sid=#{gid}
+		UPDATE supply SET suinventory=suinventory-#{count} WHERE wid=#{wid} AND sid=#{gid}
 	</update>
 	<update id="updateSupplykucunzeng" >
-		UPDATE supply SET suinventory=suinventory+#{supply.suinventory} WHERE wid=#{wid} AND sid=#{gid}
+		UPDATE supply SET suinventory=suinventory+#{count} WHERE wid=#{wid} AND sid=#{gid}
 	</update>
 	<select id="querySupplyBygid" parameterType="int" resultMap="supplymapper">
 		 SELECT s.* FROM supply s INNER JOIN warehouse w  ON s.`wid`=w.`wid`
