@@ -53,6 +53,15 @@ public class GoodsController {
         return goodsService.queryAllGoodsBywid(wid);
     }
 
+    //用商品名查商品
+    @RequestMapping(value ="/goodscx.action",produces = {"application/json;charset=utf-8"})
+    @CrossOrigin
+    @ResponseBody
+    public Goods goodscx(Goods goods){
+
+
+        return goodsService.queryGoodsBygname(goods);
+    }
 
     //添加22
     @RequestMapping(value ="/addGoods.action",produces = {"application/json;charset=utf-8"})

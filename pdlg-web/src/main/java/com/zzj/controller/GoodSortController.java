@@ -37,6 +37,18 @@ public class GoodSortController {
     {
         return goodSortService.queryGoodSortBygid(gid);
     }
+
+    //查
+    @RequestMapping("/cx.action")
+    @CrossOrigin
+    @ResponseBody
+    public List<Goods> cx(int gbsid,int gssid)
+    {
+        System.out.println(goodsService.queryAllGoodsBybigsmaid(gbsid,gssid));
+        return goodsService.queryAllGoodsBybigsmaid(gbsid,gssid);
+    }
+
+
     //添加
     @RequestMapping(value ="/addGoodSort.action",produces = {"application/json;charset=utf-8"})
     @CrossOrigin

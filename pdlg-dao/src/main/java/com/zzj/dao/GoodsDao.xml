@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT g.* FROM goods g INNER JOIN goodsort gs ON gs.gsid=g.gsid
 		INNER JOIN goodbigsort gbs ON gs.gbsid=gbs.gbsid
 		<where>
+			<if test="gisshangjia!=0">and gisshangjia=#{gisshangjia}</if>
 			<if test="gname!=null  and gname!=''">and g.gname like concat('%',#{gname},'%') </if>
 			<if test="gstatus!=0 ">and g.gstatus =#{gstatus} </if>
 			<if test="gsid!=null">
@@ -37,6 +38,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select count(*) FROM goods g INNER JOIN goodsort gs ON gs.gsid=g.gsid
 		INNER JOIN goodbigsort gbs ON gs.gbsid=gbs.gbsid
 		<where>
+			<if test="gisshangjia!=0">and gisshangjia=#{gisshangjia}</if>
 			<if test="gname!=null and gname!='' ">and g.gname like concat('%',#{gname},'%') </if>
 			<if test="gstatus!=0">and g.gstatus =#{gstatus} </if>
 			<if test="gsid!=null">

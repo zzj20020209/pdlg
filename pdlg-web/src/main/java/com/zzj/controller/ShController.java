@@ -35,7 +35,8 @@ public class ShController {
     public PageVo<Shvo> shcxs(Shvo shvo,
                                 @RequestParam(value = "page",defaultValue = "1") int page,
                                 @RequestParam(value = "rows",defaultValue = "5")int rows){
-        return shService.shcxs(shvo,page,rows);
+        PageVo<Shvo> p1=shService.shcxs(shvo,page,rows);
+        return p1;
     }
 
     @CrossOrigin
@@ -106,7 +107,7 @@ public class ShController {
             map.put("yhm",shvo1.getSname());
         }else{
             map.put("code","1");
-            map.put("msg","登录失败");
+            map.put("msg","账号密码错误或该商户不存在！");
             //map.put("username","test");
         }
 

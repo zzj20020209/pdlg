@@ -24,4 +24,5 @@ public interface GoodSmallsortDao {
     public GoodSmallsort queryGoodSmallsortBygsid(int gsid);
     //通过大分类ID查小分类
     public List<GoodSmallsort> queryGoodSmallsortBygbsid(int gbsid);
+
 }
