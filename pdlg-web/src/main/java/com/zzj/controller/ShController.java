@@ -57,7 +57,6 @@ public class ShController {
     @ResponseBody
     public Shvo shcxdg(int sid){
         Shvo shvo=shService.shcxdg(sid);
-
         return shvo;
     }
 
@@ -97,14 +96,16 @@ public class ShController {
     @RequestMapping("/shdl")
     @ResponseBody
     public Map shdl(Shvo shvo, HttpSession session){
-        Map<String,String> map =new HashMap<String,String>();
+        Map<String,Object> map =new HashMap<String,Object>();
         Shvo shvo1= shService.shdl(shvo);
-
+        int sid=shvo1.getSid();
         if(shvo1!=null){
             session.setAttribute("sh",shvo1);
             map.put("code","0");
             map.put("msg","登录成功");
             map.put("yhm",shvo1.getSname());
+            map.put("sid",sid);
+            map.put("y",shvo1.getYhm());
         }else{
             map.put("code","1");
             map.put("msg","账号密码错误或该商户不存在！");
