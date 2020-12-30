@@ -116,7 +116,7 @@ static int id=0;
     @CrossOrigin
     public void sso(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int num=orderService.updateOrder(id);
-        String url = "http://localhost:9090/#/navigation/userCenter";
+        String url = "http://localhost:9090/#/success";
         Order order=new Order();
         order.setId(id);
         order.setoYogistics("待发货");
