@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zzj.dao.StatisticsDao">
+    <select id="queryStatistics" resultType="Statistics">
+        SELECT YEAR(NOW()) AS nian,MONTH(NOW())-#{yue} AS times,SUM(o.oprice) AS price FROM `orderr` o
+        WHERE DATE_FORMAT(NOW(),'%m')-#{yue} = DATE_FORMAT(o.otime,'%m')
+        AND `oYogistics`!='待付款'
+    </select>
+
+    <select id="queryGoodes" resultType="Statistics">
+        SELECT g.gname,o.`oxcount` FROM `orderxiang` o LEFT JOIN `goods` g ON o.gid=g.gid ORDER BY o.oxcount DESC
+    </select>
+</mapper>

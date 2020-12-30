@@ -31,6 +31,4 @@ public class SupplyController {
     {
         return supplyService.querySupplyBygid(gid);
     }
-
-
 }
