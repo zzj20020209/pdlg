@@ -28,4 +28,12 @@ public interface OrderXiangDao {
     public int updateOrderXiangCang(@Param("oid")int oid,
                                     @Param("gid")int gid,
                                     @Param("wid")int wid);
+    //添加订单
+    public int addOrderXiang(@Param("orderXiang")OrderXiang orderXiang,
+                             @Param("oid")int oid,
+                             @Param("sid")int sid,
+                             @Param("uid")int uid,
+                             @Param("gid")int gid
+                             );
+
 }

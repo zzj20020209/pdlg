@@ -19,4 +19,6 @@ public interface OrderService {
     public Order queryAllOrderByoid( int oid);
     //修改状态
     public int updateOrderzhuang(Order order);
+    //添加订单
+    public int addOrder(Order order);
 }

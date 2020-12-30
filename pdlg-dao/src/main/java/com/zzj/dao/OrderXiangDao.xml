@@ -113,4 +113,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updateOrderXiangCang" parameterType="order">
 		UPDATE orderxiang SET wid =#{wid} WHERE oid=#{oid} AND gid=#{gid}
 	</update>
+	<insert id="addOrderXiang"  useGeneratedKeys="true" keyColumn="oxid" keyProperty="oxid">
+		INSERT INTO orderxiang(oid,sid,uid,gid,wid,oxprice,oxcount)
+		values (#{oid},#{sid},#{uid}
+		,#{gid},null,#{orderXiang.oxprice},#{orderXiang.oxcount})
+	</insert>
 </mapper>

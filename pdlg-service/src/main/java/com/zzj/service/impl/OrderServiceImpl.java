@@ -70,5 +70,10 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.updateOrderzhuang(order);
     }
 
+    @Override
+    public int addOrder(Order order) {
+        return orderDao.addOrder(order);
+    }
+
 
 }

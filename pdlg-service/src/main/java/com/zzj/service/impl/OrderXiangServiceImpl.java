@@ -66,4 +66,9 @@ public class OrderXiangServiceImpl implements OrderXiangService {
     public int updateOrderXiangCang(int oid, int gid, int wid) {
         return orderXiangDao.updateOrderXiangCang(oid,gid,wid);
     }
+
+    @Override
+    public int addOrderXiang(OrderXiang orderXiang, int oid, int sid, int uid, int gid) {
+        return orderXiangDao.addOrderXiang(orderXiang,oid,sid,uid,gid);
+    }
 }

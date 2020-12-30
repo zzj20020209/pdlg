@@ -1,6 +1,8 @@
 package com.zzj.controller;
 
+import com.zzj.service.GoodsService;
 import com.zzj.service.OrderService;
+import com.zzj.service.OrderXiangService;
 import com.zzj.vo.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,13 +14,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Controller
 public class OrderController {
     @Autowired
     OrderService orderService;
+    @Autowired
+    GoodsService goodsService;
+    @Autowired
+    OrderXiangService orderXiangService;
+      //订单编号前缀
+    public static final String PREFIX = "DD";
+    //订单编号后缀（核心部分）
+    private static long code;
+    public static final int MACHINE_ID = 1;
+    public final static String machineCode13 = "0";
+    private final static AtomicInteger sub = new AtomicInteger(0);
+    // 生成订单编号
     //查询所有用户订单
     @RequestMapping("/queryAllOrderUser.action")
     @CrossOrigin
@@ -63,5 +81,36 @@ public class OrderController {
             msg="操作失败!";
         }
         return  msg;
+    }
+    //添加订单
+    @RequestMapping(value ="/addOrder.action",produces = {"application/json;charset=utf-8"})
+    @CrossOrigin
+    @ResponseBody
+    public String addOrder(Order order,String dmoney,String dcount,String gname,int shang,int uid){
+        String msg="生成订单成功";
+        int num=orderService.addOrder(order);
+        if(num==1){
+            String[] money = dmoney.split(",");
+            int[] length = new int[money.length];
+            String[] count = dcount.split(",");
+            String[] name = gname.split(",");
+            String idstr="";
+            for(String s:name){
+                    Goods goods1=new Goods();
+                    goods1.setGname(s);
+                    Goods goods=goodsService.queryGoodsBygname(goods1);
+                idstr+=goods.getGid()+",";
+            }
+            String[] id = idstr.split(",");
+            for(int i=0;i<length.length;i++){
+                OrderXiang orderXiang=new OrderXiang();
+                orderXiang.setOxcount(Integer.parseInt(count[i]));
+                orderXiang.setOxprice(Integer.parseInt(money[i]));
+                int num2=orderXiangService.addOrderXiang(orderXiang,order.getId(),shang,uid,
+                        Integer.parseInt(id[i]));
+            }
+
+        }
+        return msg;
     }
 }

@@ -96,4 +96,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where id=#{id}
 	</update>
 
+	<insert id="addOrder"  useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+		INSERT INTO orderr(oprice,otime,oYogistics,oSLogistics,oZLogistics)
+		values (#{oprice},default,default,NULL,NULL)
+	</insert>
+
 </mapper>

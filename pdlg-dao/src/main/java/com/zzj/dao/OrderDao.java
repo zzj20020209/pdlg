@@ -1,5 +1,6 @@
 package com.zzj.dao;
 
+import com.zzj.vo.Goods;
 import com.zzj.vo.Order;
 import org.apache.ibatis.annotations.Param;
 
@@ -33,7 +34,8 @@ public interface OrderDao {
     public int updateOrder(int oid);
     //修改状态
     public int updateOrderzhuang(Order order);
-
+    //添加订单
+    public int addOrder(Order order);
 
 
 }
